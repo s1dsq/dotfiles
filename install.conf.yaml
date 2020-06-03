@@ -1,0 +1,14 @@
+- defaults:
+    link:
+        create: true
+        relink: true
+    
+- link:
+    ~/.config/nvim:
+        relink: false
+        path: vim/.config/nvim
+    ~/.tmux.conf:
+    ~/.zshrc:
+        path: zsh/zshrc
+    ~/.alacritty.yml:
+        path: terminal/alacritty/alacritty.yml
