@@ -60,7 +60,7 @@ au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
 let g:airline_powerline_fonts=1
 
 " airline themes
-let g:airline_theme='base16_gruvbox_dark_hard'
+let g:airline_theme='base16_solarized'
 
 " nerdcommenter
 let g:NERDSpaceDelims = 1 " add space after delimiter
@@ -76,9 +76,9 @@ endif
 " Gruvbox theme
 " let g:gruvbox_contrast_dark='hard'
 " let g:gruvbox_contrast_light='hard'
-set background=dark
+set background=light
 let base16colorspace=256
-colorscheme base16-gruvbox-dark-hard 
+colorscheme base16-solarized-dark
 
 " =============================================================================
 " # Editor settings
