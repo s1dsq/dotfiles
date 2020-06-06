@@ -14,7 +14,7 @@ call plug#begin()
 Plug 'tpope/vim-fugitive'
 
 " Editor plugins
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer --go-completer --rust-completer' }
+Plug 'ajh17/VimCompletesMe'
 Plug 'Raimondi/delimitMate' " close quotes, brackets automatically
 
 " Language specific
@@ -36,12 +36,6 @@ Plug 'junegunn/fzf'
 call plug#end() 
 
 " Plugin Settings
-" YCM
-let g:ycm_global_ycm_extra_conf = '~/.config/nvim/.ycm_extra_conf.py'
-let g:ycm_clangd_binary_path = '/usr/local/opt/llvm/bin/clangd'
-let g:python_host_prog = '/usr/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
-
 " Vimtex
 let g:tex_flavor='latex'
 if has('nvim')
@@ -51,16 +45,11 @@ if executable('zathura')
 	let g:vimtex_view_method='zathura'
 endif
 
-if !exists('g:ycm_semantic_triggers')
-	let g:ycm_semantic_triggers = {}
-endif
-au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
-
 " airline
 let g:airline_powerline_fonts=1
 
 " airline themes
-let g:airline_theme='base16_solarized'
+let g:airline_theme='solarized_flood'
 
 " nerdcommenter
 let g:NERDSpaceDelims = 1 " add space after delimiter
@@ -73,9 +62,9 @@ if (match($TERM, "-256color") != -1) && (match($TERM, "screen-256color") == -1)
   " screen does not (yet) support truecolor
   set termguicolors
 endif
-" Gruvbox theme
-" let g:gruvbox_contrast_dark='hard'
-" let g:gruvbox_contrast_light='hard'
+
+
+" Theme settings
 set background=light
 let base16colorspace=256
 colorscheme base16-solarized-dark
