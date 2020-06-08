@@ -56,9 +56,9 @@ let g:NERDSpaceDelims = 1 " add space after delimiter
 
 " deal with colors
 if !has('gui_running')
-  set t_Co=256
+  set t_co=256
 endif
-if (match($TERM, "-256color") != -1) && (match($TERM, "screen-256color") == -1)
+if (match($term, "-256color") != -1) && (match($term, "screen-256color") == -1)
   " screen does not (yet) support truecolor
   set termguicolors
 endif
@@ -67,7 +67,7 @@ endif
 " Theme settings
 set background=light
 let base16colorspace=256
-colorscheme base16-solarized-dark
+colorscheme base16-solarized-light
 
 " =============================================================================
 " # Editor settings
@@ -104,7 +104,45 @@ set relativenumber
 " update when editing a file in editor other than vim
 set autowrite
 set autoread
-" set cursorline " hightlight current line
+
+" Ctrl+c as <Esc> (mapping caps-lock to control)
+" can also mat Ctrl+k as <Esc>
+nnoremap <C-c> <Esc>
+inoremap <C-c> <Esc>
+vnoremap <C-c> <Esc>
+snoremap <C-c> <Esc>
+xnoremap <C-c> <Esc>
+cnoremap <C-c> <Esc>
+onoremap <C-c> <Esc>
+lnoremap <C-c> <Esc>
+tnoremap <C-c> <Esc>
+
+" Ins-mode complettion
+" https://www.vi-improved.org/recommendations/
+" file names
+inoremap <silent> ,f <C-x><C-f> 
+" keywords (cur + incl files)
+inoremap <silent> ,i <C-x><C-i> 
+" whole lines
+inoremap <silent> ,l <C-x><C-l> 
+" keywords (cur file)
+inoremap <silent> ,n <C-x><C-n> 
+" omni-completion
+inoremap <silent> ,o <C-x><C-o> 
+" tags
+inoremap <silent> ,t <C-x><C-]> 
+" user-defined
+inoremap <silent> ,u <C-x><C-u> 
+" vim-commands
+inoremap <silent> ,v <C-x><C-v> 
+
+" compiling and quickfix stuff
+" (https://gist.github.com/ajh17/a8f5f194079818b99199)
+" error checking on saving
+autocmd BufWritePost *.c,*.cpp,*.py make 
+" automatic quickfix after make
+autocmd QuickFixCmdPost * copen
+
 
 " =============================================================================
 " # Keyboard shortcuts
