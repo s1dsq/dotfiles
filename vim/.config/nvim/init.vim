@@ -29,6 +29,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-bufferline'
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
+Plug 'mcchrish/nnn.vim'
 
 " Fuzzy finder
 Plug 'junegunn/fzf'
@@ -105,6 +106,8 @@ set relativenumber
 set autowrite
 set autoread
 
+set cursorline
+
 " Ctrl+c as <Esc> (mapping caps-lock to control)
 " can also mat Ctrl+k as <Esc>
 nnoremap <C-c> <Esc>
@@ -138,8 +141,7 @@ inoremap <silent> ,v <C-x><C-v>
 
 " compiling and quickfix stuff
 " (https://gist.github.com/ajh17/a8f5f194079818b99199)
-" error checking on saving
-autocmd BufWritePost *.c,*.cpp,*.py make 
+
 " automatic quickfix after make
 autocmd QuickFixCmdPost * copen
 
@@ -149,9 +151,14 @@ autocmd QuickFixCmdPost * copen
 " =============================================================================
 inoremap jj <ESC>
 " inoremap {<CR> {<CR>}<Esc>O  " automatic curly braces
-nnoremap <Leader>s :set spell!<CR> " switch spell command
+" switch spell command
+nnoremap <silent> <Leader>s :set spell!<CR> 
 
-vnoremap . :norm.<CR> " allows to visually select and repeat using .
+" run make 
+nnoremap <Leader>c :make<CR>
+
+" allows to visually select and repeat using .
+vnoremap . :norm.<CR> 
 
 " Toogle Wrapping with leader + w
 noremap <Leader>w :call ToggleWrap()<CR>
