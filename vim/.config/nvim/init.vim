@@ -86,7 +86,6 @@ set shiftwidth=4
 set expandtab
 
 set clipboard=unnamed " copied text goes into "" register (default buffer for mac) 
-set guifont=Monaco:h14
 set textwidth=80
 
 " set smarttab
