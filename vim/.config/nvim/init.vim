@@ -29,7 +29,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-bufferline'
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
-Plug 'mcchrish/nnn.vim'
 
 " Fuzzy finder
 Plug 'junegunn/fzf'
@@ -54,6 +53,17 @@ let g:airline_theme='solarized_flood'
 
 " nerdcommenter
 let g:NERDSpaceDelims = 1 " add space after delimiter
+
+" netrw settings (builtin file manager) 
+let g:netrw_banner = 0
+let g:netrw_liststyle = 0
+let g:netrw_browse_split = 2
+let g:netrw_winsize = 20
+
+nnoremap <silent> <Leader>fe :Vexplore<CR>
+nnoremap <silent> <Leader>+ :vertical resize +5<CR>
+nnoremap <silent> <Leader>- :vertical resize -5<CR>
+nnoremap <Leader>, <C-w>
 
 " deal with colors
 if !has('gui_running')
@@ -152,9 +162,6 @@ inoremap jj <ESC>
 " inoremap {<CR> {<CR>}<Esc>O  " automatic curly braces
 " switch spell command
 nnoremap <silent> <Leader>s :set spell!<CR> 
-
-" run make 
-nnoremap <Leader>c :make<CR>
 
 " allows to visually select and repeat using .
 vnoremap . :norm.<CR> 
