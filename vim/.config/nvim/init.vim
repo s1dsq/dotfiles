@@ -31,7 +31,8 @@ Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
 
 " Fuzzy finder
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end() 
 
