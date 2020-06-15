@@ -50,7 +50,7 @@ endif
 let g:airline_powerline_fonts=1
 
 " airline themes
-let g:airline_theme='solarized_flood'
+let g:airline_theme='base16_gruvbox_dark_hard'
 
 " nerdcommenter
 let g:NERDSpaceDelims = 1 " add space after delimiter
@@ -88,7 +88,7 @@ endif
 " Theme settings
 set background=dark
 let base16colorspace=256
-colorscheme base16-solarized-dark
+colorscheme base16-gruvbox-dark-medium
 
 " =============================================================================
 " # Editor settings
