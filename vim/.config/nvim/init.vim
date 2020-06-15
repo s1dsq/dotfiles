@@ -62,9 +62,18 @@ let g:netrw_browse_split = 2
 let g:netrw_winsize = 20
 
 nnoremap <silent> <Leader>fe :Vexplore<CR>
-nnoremap <silent> <Leader>+ :vertical resize +5<CR>
-nnoremap <silent> <Leader>- :vertical resize -5<CR>
-nnoremap <Leader>, <C-w>
+
+" splits 
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+
+noremap <silent> <C-Left> :vertical resize -5<CR>
+noremap <silent> <C-Right> :vertical resize +5<CR>
+noremap <silent> <C-Up> :resize +5<CR>
+noremap <silent> <C-Down> :resize -5<CR>
+noremap <Leader>, <C-w>
 
 " deal with colors
 if !has('gui_running')
@@ -116,7 +125,7 @@ set relativenumber
 set autowrite
 set autoread
 
-set cursorline
+" set cursorline
 
 " Ctrl+c as <Esc> (mapping caps-lock to control)
 " can also mat Ctrl+k as <Esc>
@@ -153,7 +162,7 @@ inoremap <silent> ,v <C-x><C-v>
 " (https://gist.github.com/ajh17/a8f5f194079818b99199)
 
 " automatic quickfix after make
-autocmd QuickFixCmdPost * copen
+" autocmd QuickFixCmdPost * copen
 
 
 " =============================================================================
