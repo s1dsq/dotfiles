@@ -86,9 +86,9 @@ endif
 
 
 " Theme settings
-set background=light
+set background=dark
 let base16colorspace=256
-colorscheme base16-solarized-light
+colorscheme base16-solarized-dark
 
 " =============================================================================
 " # Editor settings
