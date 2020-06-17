@@ -15,7 +15,7 @@ Plug 'tpope/vim-fugitive'
 
 " Editor plugins
 Plug 'ajh17/VimCompletesMe'
-Plug 'Raimondi/delimitMate' " close quotes, brackets automatically
+" Plug 'Raimondi/delimitMate' " close quotes, brackets automatically
 
 " Language specific
 Plug 'lervag/vimtex', { 'for': 'tex' }
@@ -33,6 +33,10 @@ Plug 'chriskempson/base16-vim'
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
+" Break bad habits (hardmode was too hard)
+Plug 'takac/vim-hardtime'
+
 
 call plug#end() 
 
@@ -55,6 +59,11 @@ let g:airline_theme='base16_gruvbox_dark_hard'
 " nerdcommenter
 let g:NERDSpaceDelims = 1 " add space after delimiter
 
+" vim-hardtime
+let g:hardtime_default_on = 1
+let g:list_of_disabled_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+
+
 " netrw settings (builtin file manager) 
 let g:netrw_banner = 0
 let g:netrw_liststyle = 0
@@ -64,11 +73,13 @@ let g:netrw_winsize = 20
 nnoremap <silent> <Leader>fe :Vexplore<CR>
 
 " splits 
+" Quick movement between windows
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 
+" resize windows quickly
 noremap <silent> <C-Left> :vertical resize -5<CR>
 noremap <silent> <C-Right> :vertical resize +5<CR>
 noremap <silent> <C-Up> :resize +5<CR>
