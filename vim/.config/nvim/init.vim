@@ -19,7 +19,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Language specific
 Plug 'lervag/vimtex', { 'for': 'tex' }
-
+Plug 'leafgarland/typescript-vim'
 " Commenting
 Plug 'preservim/nerdcommenter'
 
@@ -27,7 +27,8 @@ Plug 'preservim/nerdcommenter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-bufferline'
-Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
+Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/base16-vim'
 
 " Fuzzy finder
@@ -75,7 +76,7 @@ endif
 let g:airline_powerline_fonts=1
 
 " airline themes
-let g:airline_theme='base16_gruvbox_dark_hard'
+let g:airline_theme='gruvbox'
 
 " nerdcommenter
 let g:NERDSpaceDelims = 1 " add space after delimiter
@@ -115,8 +116,8 @@ endif
 
 " Theme settings
 set background=dark
-let base16colorspace=256
-colorscheme base16-gruvbox-dark-medium
+colorscheme gruvbox
+let g:gruvbox_contrast_dark='medium'
 
 " =============================================================================
 " # Editor settings
@@ -153,6 +154,7 @@ set relativenumber
 set autowrite
 set autoread
 
+set foldmethod=syntax
 " set cursorline
 
 " Ctrl+c as <Esc> (mapping caps-lock to control)
@@ -191,7 +193,6 @@ inoremap <silent> ,v <C-x><C-v>
 
 " automatic quickfix after make
 " autocmd QuickFixCmdPost * copen
-
 
 " =============================================================================
 " # Keyboard shortcuts

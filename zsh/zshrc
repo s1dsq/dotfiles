@@ -170,3 +170,4 @@ alias vim="/usr/local/bin/nvim"
 
 # completions for zsh (check alacritty website for more info)
 fpath+=${ZDOTDIR:-~}/.zsh_functions
+export PATH="/usr/local/opt/llvm/bin:$PATH"
