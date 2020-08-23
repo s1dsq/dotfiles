@@ -90,6 +90,12 @@ let g:netrw_winsize = 20
 
 nnoremap <silent> <Leader>fe :Vexplore<CR>
 
+" FZF stuff
+let g:fzf_layout = {'down' : '30%'}
+
+nnoremap <silent> <Leader>fz :FZF<CR>
+nnoremap <silent> <Leader>bf :Buffers<CR>
+
 " splits 
 " Quick movement between windows
 nnoremap <C-h> <C-w>h
