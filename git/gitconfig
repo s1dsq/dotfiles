@@ -1,0 +1,19 @@
+[user]
+    name = Siddharth Singh
+    email = singh.siddharth7718@gmail.com
+[core]
+    pager = cat
+    excludesFile = ~/.gitignore_global
+[alias]
+    gr = log --oneline --graph --decorate --pretty=line
+    st = status -sb
+    df = diff
+    ck = checkout
+    cm = commit
+    br = branch
+    rb = rebase
+    unstage = reset HEAD --
+[pretty]
+    line = "%C(auto)%h %<|(60,trunc)%s %C(green)(%cd) %C(blue)<%an>%C(auto)%d"
+[log]
+    date=format:"%a %d/%m %H:%M"

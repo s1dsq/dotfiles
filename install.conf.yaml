@@ -2,7 +2,6 @@
     link:
         create: true
         relink: true
-    
 - link:
     ~/.config/nvim:
         relink: false
@@ -12,3 +11,5 @@
         path: zsh/zshrc
     ~/.alacritty.yml:
         path: terminal/alacritty/alacritty.yml
+    ~/.gitconfig:
+        path: git/gitconfig
