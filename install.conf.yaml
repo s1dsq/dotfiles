@@ -8,8 +8,9 @@
         path: vim/.config/nvim
     ~/.tmux.conf:
     ~/.zshrc:
-        path: zsh/zshrc
+    ~/.zsh:
     ~/.alacritty.yml:
         path: terminal/alacritty/alacritty.yml
     ~/.gitconfig:
         path: git/gitconfig
+    ~/.shell:

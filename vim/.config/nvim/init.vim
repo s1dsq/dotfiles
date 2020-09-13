@@ -2,7 +2,6 @@ set nocompatible
 filetype off                 
 
 let g:mapleader="\<Space>"
-" let g:maplocalleader="\<Space>"
 
 " =============================================================================
 " # PLUGINS
@@ -14,7 +13,6 @@ call plug#begin()
 Plug 'tpope/vim-fugitive'
 
 " Editor plugins
-" Plug 'ajh17/VimCompletesMe'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Language specific
@@ -24,19 +22,13 @@ Plug 'leafgarland/typescript-vim'
 Plug 'preservim/nerdcommenter'
 
 " GUI plugins
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'bling/vim-bufferline'
+Plug 'itchyny/lightline.vim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'altercation/vim-colors-solarized'
-Plug 'chriskempson/base16-vim'
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-
-" Break bad habits (hardmode was too hard)
-" Plug 'takac/vim-hardtime'
 
 
 call plug#end() 
@@ -72,15 +64,12 @@ if executable('zathura')
 	let g:vimtex_view_method='zathura'
 endif
 
-" airline
-let g:airline_powerline_fonts=1
-
-" airline themes
-let g:airline_theme='gruvbox'
-
 " nerdcommenter
 let g:NERDSpaceDelims = 1 " add space after delimiter
 
+let g:lightline = {
+            \ 'colorscheme': 'gruvbox',
+            \ }
 
 " netrw settings (builtin file manager) 
 let g:netrw_banner = 0
@@ -160,8 +149,11 @@ set relativenumber
 set autowrite
 set autoread
 
+" fold according to syntax
 set foldmethod=syntax
-" set cursorline
+
+" lightline already does this
+set noshowmode
 
 " Ctrl+c as <Esc> (mapping caps-lock to control)
 " can also mat Ctrl+k as <Esc>
@@ -194,17 +186,9 @@ inoremap <silent> ,u <C-x><C-u>
 " vim-commands
 inoremap <silent> ,v <C-x><C-v> 
 
-" compiling and quickfix stuff
-" (https://gist.github.com/ajh17/a8f5f194079818b99199)
-
-" automatic quickfix after make
-" autocmd QuickFixCmdPost * copen
-
 " =============================================================================
 " # Keyboard shortcuts
 " =============================================================================
-inoremap jj <ESC>
-" inoremap {<CR> {<CR>}<Esc>O  " automatic curly braces
 " switch spell command
 nnoremap <silent> <Leader>s :set spell!<CR> 
 
@@ -217,26 +201,10 @@ function WrapOn()
 	setlocal wrap linebreak " words are not broken and displayed on next line instead
 	set display+=lastline " prevents long lines to be displayed as @
 	set virtualedit= " allows editing anywhere in the file, even empty spaces
-	noremap  <buffer> <silent> <Up>   g<Up>
-  	noremap  <buffer> <silent> <Down> g<Down>
-  	noremap  <buffer> <silent> <Home> g<Home>
-  	noremap  <buffer> <silent> <End>  g<End>
-  	inoremap <buffer> <silent> <Up>   <C-o>gk
-  	inoremap <buffer> <silent> <Down> <C-o>gj
-  	inoremap <buffer> <silent> <Home> <C-o>g<Home>
-  	inoremap <buffer> <silent> <End>  <C-o>g<End>
 endfunction
 function WrapOff()
 	setlocal nowrap
 	set virtualedit=
-	silent! nunmap <buffer> <Up>
-	silent! nunmap <buffer> <Down>
-  	silent! nunmap <buffer> <Home>
-	silent! nunmap <buffer> <End>
-  	silent! iunmap <buffer> <Up>
-  	silent! iunmap <buffer> <Down>
-  	silent! iunmap <buffer> <Home>
-  	silent! iunmap <buffer> <End>
 endfunction
 function ToggleWrap()
 	if &wrap

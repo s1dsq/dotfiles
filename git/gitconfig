@@ -2,7 +2,7 @@
     name = Siddharth Singh
     email = singh.siddharth7718@gmail.com
 [core]
-    pager = cat
+    pager = less
     excludesFile = ~/.gitignore_global
 [alias]
     gr = log --oneline --graph --decorate --pretty=line
