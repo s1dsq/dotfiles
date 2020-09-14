@@ -1,20 +1,26 @@
-if [ -f ~/.zsh/plugins_before.zsh ]; then
-    source ~/.zsh/plugins_before.zsh
+source ~/.shell/functions.sh
+
+if [ -f ~/.shell_local_before ]; then
+    source ~/.shell_local_before
 fi
 
-if [ -f ~/.shell/aliases.sh ]; then
-    source ~/.shell/aliases.sh
+if [ -f ~/.zsh_local_before ]; then
+    source ~/.zsh_local_before
 fi
 
-if [ -f ~/.shell/functions.sh ]; then
-    source ~/.shell/functions.sh
+source ~/.zsh/plugins_before.zsh
+
+source ~/.shell/aliases.sh
+
+source ~/.zsh/settings.zsh
+
+source ~/.zsh/plugins_after.zsh
+
+if [ -f ~/.shell_local_after ]; then
+    source ~/.shell_local_after
 fi
 
-if [ -f ~/.zsh/settings.zsh ]; then
-    source ~/.zsh/settings.zsh
-fi
-
-if [ -f ~/.zsh/plugins_after.zsh ]; then
-    source ~/.zsh/plugins_after.zsh
+if [ -f ~/.zshrc_local_after ]; then
+    source ~/.zshrc_local_after
 fi
 
