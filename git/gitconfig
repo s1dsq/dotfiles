@@ -5,7 +5,7 @@
     pager = less
     excludesFile = ~/.gitignore_global
 [alias]
-    gr = log --oneline --graph --decorate --pretty=line
+    gr = log --all --oneline --graph --decorate --pretty=line
     st = status -sb
     df = diff
     ck = checkout

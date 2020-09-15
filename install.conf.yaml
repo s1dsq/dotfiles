@@ -14,3 +14,6 @@
     ~/.gitconfig:
         path: git/gitconfig
     ~/.shell:
+
+- shell:
+    - [git submodule update --init --recursive, Installing submodules]

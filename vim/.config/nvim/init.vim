@@ -55,6 +55,9 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" Coc-prettier
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
 " Vimtex
 let g:tex_flavor='latex'
 if has('nvim')
@@ -66,10 +69,6 @@ endif
 
 " nerdcommenter
 let g:NERDSpaceDelims = 1 " add space after delimiter
-
-let g:lightline = {
-            \ 'colorscheme': 'gruvbox',
-            \ }
 
 " netrw settings (builtin file manager) 
 let g:netrw_banner = 0

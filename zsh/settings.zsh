@@ -49,7 +49,7 @@ fi
 # pwd last-executed-command-status shell-privilege
 local gray='#a89984'
 local orange='#fe8019'
-PROMPT='%B%F{$orange}%3~%f%b %(?.%F{green}√.%F{red}?%?)%f %(!.#.>) '
+PROMPT='%B%3~%b %(?.%F{green}√.%F{red}?%?)%f %(!.#.>) '
 
 # (git banch) (date - time)
 autoload -Uz vcs_info
