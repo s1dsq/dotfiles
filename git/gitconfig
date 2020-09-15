@@ -17,3 +17,5 @@
     line = "%C(auto)%h %<|(60,trunc)%s %C(green)(%cd) %C(blue)<%an>%C(auto)%d"
 [log]
     date=format:"%a %d/%m %H:%M"
+[include]
+        path = ~/.gitconfig_local

@@ -215,3 +215,9 @@ function ToggleWrap()
 	endif
 endfunction
 call WrapOn()
+
+" Allow local customization to init.vim
+let $LOCALFILE=expand("~/.init_local.vim")
+if filereadable($LOCALFILE)
+    source $LOCALFILE
+endif
