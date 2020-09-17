@@ -30,6 +30,8 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+Plug 'easymotion/vim-easymotion'
+
 
 call plug#end() 
 
@@ -57,6 +59,37 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Coc-prettier
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+" Lightline
+let g:lightline = {
+            \ 'mode_map': {
+            \ 'n' : 'N',
+            \ 'i' : 'I',
+            \ 'R' : 'R',
+            \ 'v' : 'V',
+            \ 'V' : 'VL',
+            \ "\<C-v>": 'VB',
+            \ 'c' : 'C',
+            \ 's' : 'S',
+            \ 'S' : 'SL',
+            \ "\<C-s>": 'SB',
+            \ 't': 'T',
+            \ },
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste' ],
+            \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
+            \   'right': [ [ 'lineinfo' ], 
+            \              [ 'percent' ], 
+            \              [ 'filetype' ] ]
+            \ },
+            \ 'component_function': {
+            \   'filename': 'LightlineFilename',
+            \   'cocstatus': 'coc#status',
+            \ },
+            \ }
+function! LightlineFilename()
+  return expand('%:t') !=# '' ? @% : '[No Name]'
+endfunction
 
 " Vimtex
 let g:tex_flavor='latex'
@@ -152,7 +185,7 @@ set autoread
 set foldmethod=syntax
 
 " lightline already does this
-set noshowmode
+" set noshowmode
 
 " Ctrl+c as <Esc> (mapping caps-lock to control)
 " can also mat Ctrl+k as <Esc>

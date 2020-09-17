@@ -43,6 +43,10 @@ else
     export EDITOR='vim'
     export MANPAGER="vim -c 'set ft=man' -"
 fi
+alias e='vim'
+
+# Commonly used directories
+[[ -d $HOME/.config/nvim ]] && hash -d nvim=$HOME/.config/nvim
 # --- EXPORTS ---
 
 # --- PROMPT ---
