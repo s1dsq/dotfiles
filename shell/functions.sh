@@ -1,7 +1,9 @@
+#!/bin/bash
+
 # mkdir and cd into it
 mkcd () {
 	mkdir -p "$1"
-	cd "$1"
+	cd "$1" || echo "Can't cd into $1"
 }
 
 
@@ -11,7 +13,7 @@ prepath() {
         # absolute path 
         dir=${dir:A}
         [ ! -d "$dir" ] && return
-        path=("$dir" $path[@])
+        path=("$dir" "${path[@]}")
     done
 }
 
@@ -21,7 +23,7 @@ postpath() {
     for dir in "$@"; do
         dir=${dir:A}
         [ ! -d "$dir" ] && return
-        path=($path[@] "$dir")
+        path=("${path[@]}" "$dir")
     done
 }
 
@@ -29,6 +31,24 @@ postpath() {
 # check if program exists on machine
 exists() {
     (( $+commands[$1] ))
+}
+
+# cd up $1 directories
+up() {
+    curdir="$(pwd)"
+    if [[ "$1" == ""  ]]; then 
+        curdir="$(dirname "$curdir")"
+    else
+        for ((i=0; i<$1; i++)); do
+            local pardir="$(dirname "$curdir")"
+            if [[ "$pardir" == "$curdir" ]]; then
+                break
+            else
+                curdir="$pardir"
+            fi
+        done
+    fi
+    cd "$curdir" || echo "Can't cd into $1"
 }
 
 
