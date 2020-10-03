@@ -18,6 +18,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Language specific
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'leafgarland/typescript-vim'
+
 " Commenting
 Plug 'preservim/nerdcommenter'
 
@@ -31,8 +32,8 @@ Plug 'chriskempson/base16-vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+" Movement
 Plug 'easymotion/vim-easymotion'
-
 
 call plug#end() 
 
@@ -53,16 +54,17 @@ function! s:check_back_space() abort
 endfunction
 
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <Leader>gd <Plug>(coc-definition)
+nmap <silent> <Leader>gy <Plug>(coc-type-definition)
+nmap <silent> <Leader>gi <Plug>(coc-implementation)
+nmap <silent> <Leader>gr <Plug>(coc-references)
 
 " Coc-prettier
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Lightline
 let g:lightline = {
+            \ 'colorscheme': 'gruvbox',
             \ 'mode_map': {
             \ 'n' : 'N',
             \ 'i' : 'I',
@@ -143,9 +145,10 @@ endif
 
 
 " Theme settings
-set background=dark
+execute "set background=".$BACKGROUND
 colorscheme gruvbox
 let g:gruvbox_contrast_dark='medium'
+let g:gruvbox_contrast_light='hard'
 
 " =============================================================================
 " # Editor settings
@@ -157,36 +160,25 @@ syntax on
 set mouse=a
 
 " https://www.reddit.com/r/vim/wiki/tabstop
-set tabstop=8
-set softtabstop=4
-set shiftwidth=4
-set expandtab
+set tabstop=8 softtabstop=4 shiftwidth=4 expandtab
 
 set clipboard=unnamed " copied text goes into "" register (default buffer for mac) 
 set textwidth=80
 
-" set smarttab
-" set smartindent " check if this necessary, remove if not
 set smartcase
 set cindent
 
 " split vertical window to the right and below
-set splitright 
-set splitbelow
+set splitright splitbelow
 
 " line numberring
-set number
-set relativenumber 
+set number relativenumber 
 
 " update when editing a file in editor other than vim
-set autowrite
-set autoread
+set autowrite autoread
 
 " fold according to syntax
 set foldmethod=syntax
-
-" lightline already does this
-" set noshowmode
 
 " Ctrl+c as <Esc> (mapping caps-lock to control)
 " can also mat Ctrl+k as <Esc>

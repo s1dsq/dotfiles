@@ -36,13 +36,12 @@ bindkey -a '^V' edit-command-line
 # If nvim exists set editor and manpager
 if exists nvim; then 
     export EDITOR='nvim'
-    export MANPAGER="nvim -c 'set ft=man' -"
     alias vim='nvim'
     alias ovim="/usr/bin/vim"
 else
     export EDITOR='vim'
-    export MANPAGER="vim -c 'set ft=man' -"
 fi
+export MANPAGER="$EDITOR -c 'set ft=man nu rnu' -"
 alias e='vim'
 
 # Commonly used directories
@@ -51,8 +50,6 @@ alias e='vim'
 
 # --- PROMPT ---
 # pwd last-executed-command-status shell-privilege
-local gray='#a89984'
-local orange='#fe8019'
 PROMPT='%B%3~%b %(?.%F{green}√.%F{red}?%?)%f %(!.#.>) '
 
 # (git banch) (date - time)
@@ -66,15 +63,8 @@ zstyle ':vcs_info:*' enable git
 # --- PROMPT ---
 
 # --- CLI programs ---
-_gen_fzf_default_opts() {
-
-    export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border=horizontal"
-
-    export FZF_DEFAULT_COMMAND="find ."
-
-}
-
-_gen_fzf_default_opts
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border=horizontal"
+export FZF_DEFAULT_COMMAND="find ."
 
 # fzf completion
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
