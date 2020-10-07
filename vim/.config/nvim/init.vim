@@ -16,7 +16,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Language specific
-Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'leafgarland/typescript-vim'
 
 " Commenting
@@ -59,25 +58,18 @@ nmap <silent> <Leader>gy <Plug>(coc-type-definition)
 nmap <silent> <Leader>gi <Plug>(coc-implementation)
 nmap <silent> <Leader>gr <Plug>(coc-references)
 
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nnoremap <silent> <leader>cd :CocDiagnostics<CR>
+
 " Coc-prettier
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Lightline
 let g:lightline = {
             \ 'colorscheme': 'gruvbox',
-            \ 'mode_map': {
-            \ 'n' : 'N',
-            \ 'i' : 'I',
-            \ 'R' : 'R',
-            \ 'v' : 'V',
-            \ 'V' : 'VL',
-            \ "\<C-v>": 'VB',
-            \ 'c' : 'C',
-            \ 's' : 'S',
-            \ 'S' : 'SL',
-            \ "\<C-s>": 'SB',
-            \ 't': 'T',
-            \ },
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
             \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
@@ -93,15 +85,6 @@ let g:lightline = {
 function! LightlineFilename()
   return expand('%:t') !=# '' ? @% : '[No Name]'
 endfunction
-
-" Vimtex
-let g:tex_flavor='latex'
-if has('nvim')
-	let g:vimtex_compiler_progname = 'nvr'	
-endif
-if executable('zathura')
-	let g:vimtex_view_method='zathura'
-endif
 
 " nerdcommenter
 let g:NERDSpaceDelims = 1 " add space after delimiter
