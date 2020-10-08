@@ -9,28 +9,20 @@ let g:mapleader="\<Space>"
 " Load Plugins
 call plug#begin()
 
-" Git plugins
+" Git 
 Plug 'tpope/vim-fugitive'
-
-" Editor plugins
+" Editor 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 " Language specific
 Plug 'leafgarland/typescript-vim'
-
 " Commenting
 Plug 'preservim/nerdcommenter'
-
-" GUI plugins
-Plug 'itchyny/lightline.vim'
+" GUI 
 Plug 'gruvbox-community/gruvbox'
 Plug 'altercation/vim-colors-solarized'
-Plug 'chriskempson/base16-vim'
-
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-
 " Movement
 Plug 'easymotion/vim-easymotion'
 
@@ -68,27 +60,6 @@ nnoremap <silent> <leader>cd :CocDiagnostics<CR>
 
 " Coc-prettier
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-" -----------
-" # lightline
-" ----------
-let g:lightline = {
-            \ 'colorscheme': 'gruvbox',
-            \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ],
-            \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ],
-            \   'right': [ [ 'lineinfo' ], 
-            \              [ 'percent' ], 
-            \              [ 'filetype' ] ]
-            \ },
-            \ 'component_function': {
-            \   'filename': 'LightlineFilename',
-            \   'cocstatus': 'coc#status',
-            \ },
-            \ }
-function! LightlineFilename()
-  return expand('%:t') !=# '' ? @% : '[No Name]'
-endfunction
 
 " -----------
 " # nerdcommenter
@@ -130,6 +101,10 @@ execute "set background=".$BACKGROUND
 colorscheme gruvbox
 let g:gruvbox_contrast_dark='medium'
 let g:gruvbox_contrast_light='hard'
+
+" Statusline
+set laststatus=2
+set statusline=%<\ %f\ %m%r%=\ %y\ L:\ \%l\/\%L\ C:\ \%c\ 
 
 " =============================================================================
 " # Editor settings
