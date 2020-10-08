@@ -36,7 +36,9 @@ Plug 'easymotion/vim-easymotion'
 
 call plug#end() 
 
-"Coc Stuff
+" -----------
+" # COC 
+" ----------
 " Plugin Settings
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -67,7 +69,9 @@ nnoremap <silent> <leader>cd :CocDiagnostics<CR>
 " Coc-prettier
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
-" Lightline
+" -----------
+" # lightline
+" ----------
 let g:lightline = {
             \ 'colorscheme': 'gruvbox',
             \ 'active': {
@@ -86,10 +90,14 @@ function! LightlineFilename()
   return expand('%:t') !=# '' ? @% : '[No Name]'
 endfunction
 
-" nerdcommenter
+" -----------
+" # nerdcommenter
+" ----------
 let g:NERDSpaceDelims = 1 " add space after delimiter
 
-" netrw settings (builtin file manager) 
+" -----------
+" # netrw
+" ----------
 let g:netrw_banner = 0
 let g:netrw_liststyle = 0
 let g:netrw_browse_split = 2
@@ -97,26 +105,17 @@ let g:netrw_winsize = 20
 
 nnoremap <silent> <Leader>fe :Vexplore<CR>
 
-" FZF stuff
+" -----------
+" # FZF
+" ----------
 let g:fzf_layout = {'down' : '30%'}
 
 nnoremap <silent> <Leader>fz :FZF<CR>
 nnoremap <silent> <Leader>bf :Buffers<CR>
 
-" splits 
-" Quick movement between windows
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-
-" resize windows quickly
-noremap <silent> <C-Left> :vertical resize -5<CR>
-noremap <silent> <C-Right> :vertical resize +5<CR>
-noremap <silent> <C-Up> :resize +5<CR>
-noremap <silent> <C-Down> :resize -5<CR>
-noremap <Leader>, <C-w>
-
+" -----------
+" # Colors and Theme
+" ----------
 " deal with colors
 if !has('gui_running')
   set t_co=256
@@ -125,7 +124,6 @@ if (match($term, "-256color") != -1) && (match($term, "screen-256color") == -1)
   " screen does not (yet) support truecolor
   set termguicolors
 endif
-
 
 " Theme settings
 execute "set background=".$BACKGROUND
@@ -136,35 +134,47 @@ let g:gruvbox_contrast_light='hard'
 " =============================================================================
 " # Editor settings
 " =============================================================================
+" detect filetype plugins and indents
 filetype plugin indent on 
+" try to indent automatically
 set autoindent
-
+" syntax highlighting
 syntax on
+" enable mouse for all modes
 set mouse=a
-
 " https://www.reddit.com/r/vim/wiki/tabstop
 set tabstop=8 softtabstop=4 shiftwidth=4 expandtab
-
-set clipboard=unnamed " copied text goes into "" register (default buffer for mac) 
-set textwidth=80
-
-set smartcase
-set cindent
-
+" copied text goes into "" register (default buffer for mac) 
+set clipboard=unnamed 
 " split vertical window to the right and below
 set splitright splitbelow
-
-" line numberring
+" line numbering
 set number relativenumber 
-
-" update when editing a file in editor other than vim
+" write when changing buffer, read when files changes outside of vim
 set autowrite autoread
-
 " fold according to syntax
 set foldmethod=syntax
 
+" =============================================================================
+" # Keyboard shortcuts
+" =============================================================================
+" switch spell command
+nnoremap <silent> <Leader>s :set spell!<CR> 
+
+" Toogle Wrapping with leader + w
+nnoremap <Leader>w :setlocal wrap!<CR>
+
+" allows to visually select and repeat using .
+vnoremap . :norm.<CR> 
+
+" Argslist navigation
+nnoremap [a :previous<CR>
+nnoremap ]a :next<CR>
+nnoremap [A :first<CR>
+nnoremap ]A :last<CR>
+
 " Ctrl+c as <Esc> (mapping caps-lock to control)
-" can also mat Ctrl+k as <Esc>
+" can also map Ctrl+k as <Esc>
 nnoremap <C-c> <Esc>
 inoremap <C-c> <Esc>
 vnoremap <C-c> <Esc>
@@ -194,36 +204,18 @@ inoremap <silent> ,u <C-x><C-u>
 " vim-commands
 inoremap <silent> ,v <C-x><C-v> 
 
-" =============================================================================
-" # Keyboard shortcuts
-" =============================================================================
-" switch spell command
-nnoremap <silent> <Leader>s :set spell!<CR> 
+" splits 
+" Quick movement between windows
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
 
-" allows to visually select and repeat using .
-vnoremap . :norm.<CR> 
-
-" Toogle Wrapping with leader + w
-noremap <Leader>w :call ToggleWrap()<CR>
-function WrapOn()
-	setlocal wrap linebreak " words are not broken and displayed on next line instead
-	set display+=lastline " prevents long lines to be displayed as @
-	set virtualedit= " allows editing anywhere in the file, even empty spaces
-endfunction
-function WrapOff()
-	setlocal nowrap
-	set virtualedit=
-endfunction
-function ToggleWrap()
-	if &wrap
-		echo "Wrap Off"
-		call WrapOff()
-	else
-		echo "Wrap On"
-		call WrapOn()
-	endif
-endfunction
-call WrapOn()
+" resize windows quickly
+noremap <silent> <C-Left> :vertical resize -5<CR>
+noremap <silent> <C-Right> :vertical resize +5<CR>
+noremap <silent> <C-Up> :resize +5<CR>
+noremap <silent> <C-Down> :resize -5<CR>
 
 " Allow local customization to init.vim
 let $LOCALFILE=expand("~/.init_local.vim")

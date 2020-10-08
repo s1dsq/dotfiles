@@ -19,3 +19,11 @@
     date=format:"%a %d/%m %H:%M"
 [include]
     path = ~/.gitconfig_local
+[merge]
+    tool = vimdiff
+[diff]
+    tool = nvimdiff2
+[difftool "nvimdiff2"]
+    cmd = nvim -d $LOCAL $REMOTE
+[difftool]
+	trustExitCode = true
