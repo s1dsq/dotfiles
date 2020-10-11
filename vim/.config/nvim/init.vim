@@ -14,9 +14,9 @@ Plug 'tpope/vim-fugitive'
 " Editor 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Language specific
-Plug 'leafgarland/typescript-vim'
+Plug 'sheerun/vim-polyglot'
 " Commenting
-Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-commentary'
 " GUI 
 Plug 'gruvbox-community/gruvbox'
 Plug 'altercation/vim-colors-solarized'
