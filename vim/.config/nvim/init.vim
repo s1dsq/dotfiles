@@ -17,6 +17,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 " Commenting
 Plug 'tpope/vim-commentary'
+" handy mappings and mnemonics
+Plug 'tpope/vim-unimpaired'
 " GUI 
 Plug 'gruvbox-community/gruvbox'
 Plug 'altercation/vim-colors-solarized'
@@ -83,6 +85,12 @@ let g:fzf_layout = {'down' : '30%'}
 
 nnoremap <silent> <Leader>fz :FZF<CR>
 nnoremap <silent> <Leader>bf :Buffers<CR>
+
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit',
+  \ 'ctrl-y': {lines -> setreg('*', join(lines, "\n"))}}
 
 " -----------
 " # Colors and Theme
