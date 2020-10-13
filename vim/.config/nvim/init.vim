@@ -62,11 +62,8 @@ nnoremap <silent> <leader>cd :CocDiagnostics<CR>
 
 " Coc-prettier
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
-" -----------
-" # nerdcommenter
-" ----------
-let g:NERDSpaceDelims = 1 " add space after delimiter
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 " -----------
 " # netrw
@@ -123,6 +120,8 @@ filetype plugin indent on
 set autoindent
 " syntax highlighting
 syntax on
+" unload buffer when leaving
+set hidden
 " enable mouse for all modes
 set mouse=a
 " https://www.reddit.com/r/vim/wiki/tabstop
@@ -141,20 +140,8 @@ set foldmethod=syntax
 " =============================================================================
 " # Keyboard shortcuts
 " =============================================================================
-" switch spell command
-nnoremap <silent> <Leader>s :set spell!<CR> 
-
-" Toogle Wrapping with leader + w
-nnoremap <Leader>w :setlocal wrap!<CR>
-
 " allows to visually select and repeat using .
 vnoremap . :norm.<CR> 
-
-" Argslist navigation
-nnoremap [a :previous<CR>
-nnoremap ]a :next<CR>
-nnoremap [A :first<CR>
-nnoremap ]A :last<CR>
 
 " Ctrl+c as <Esc> (mapping caps-lock to control)
 " can also map Ctrl+k as <Esc>
