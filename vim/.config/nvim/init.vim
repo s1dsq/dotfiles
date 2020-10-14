@@ -19,6 +19,10 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 " handy mappings and mnemonics
 Plug 'tpope/vim-unimpaired'
+" surround text 
+Plug 'tpope/vim-surround'
+" repeat stuff
+Plug 'tpope/vim-repeat'
 " GUI 
 Plug 'gruvbox-community/gruvbox'
 Plug 'altercation/vim-colors-solarized'
@@ -26,54 +30,32 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Movement
-Plug 'easymotion/vim-easymotion'
+Plug 'justinmk/vim-sneak'
+" Undo
+Plug 'mbbill/undotree'
 
 call plug#end() 
-
-" -----------
-" # COC 
-" ----------
-" Plugin Settings
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" GoTo code navigation.
-nmap <silent> <Leader>gd <Plug>(coc-definition)
-nmap <silent> <Leader>gy <Plug>(coc-type-definition)
-nmap <silent> <Leader>gi <Plug>(coc-implementation)
-nmap <silent> <Leader>gr <Plug>(coc-references)
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-nnoremap <silent> <leader>cd :CocDiagnostics<CR>
-
-" Coc-prettier
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
 
 " -----------
 " # netrw
 " ----------
 let g:netrw_banner = 0
 let g:netrw_liststyle = 0
-let g:netrw_browse_split = 2
+let g:netrw_browse_split = 3
 let g:netrw_winsize = 20
 
 nnoremap <silent> <Leader>fe :Vexplore<CR>
+
+" -----------
+" # sneak
+" ----------
+let g:sneak#s_next = 1
+let g:sneak#label = 1
+
+" -----------
+" # undotree
+" ----------
+nnoremap <F5> :UndotreeToggle<cr>
 
 " -----------
 " # FZF
@@ -136,6 +118,13 @@ set number relativenumber
 set autowrite autoread
 " fold according to syntax
 set foldmethod=syntax
+" include current file and all directories recursively
+set path=.,,**
+" save undos
+set undofile
+set undodir=~/.vim/undodir
+" remove annoyance
+set noswapfile nobackup
 
 " =============================================================================
 " # Keyboard shortcuts
