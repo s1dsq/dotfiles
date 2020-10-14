@@ -136,6 +136,8 @@ set number relativenumber
 set autowrite autoread
 " fold according to syntax
 set foldmethod=syntax
+" search relative to current file and directory
+set path=.,,**
 
 " =============================================================================
 " # Keyboard shortcuts
