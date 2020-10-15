@@ -118,7 +118,7 @@ set number relativenumber
 set autowrite autoread
 " fold according to syntax
 set foldmethod=syntax
-" include current file and all directories recursively
+" search relative to current file and directory
 set path=.,,**
 " save undos
 set undofile

@@ -1,18 +1,22 @@
 - defaults:
     link:
-        create: true
-        relink: true
+      create: true
+      relink: true
 - link:
     ~/.config/nvim:
-        relink: false
-        path: vim/.config/nvim
+      relink: false
+      path: vim/.config/nvim
+    ~/.config/i3:
+      path: i3
+    ~/.config/zathura:
+      path: zathura
     ~/.tmux.conf:
     ~/.zshrc:
     ~/.zsh:
     ~/.alacritty.yml:
-        path: terminal/alacritty/alacritty.yml
+      path: terminal/alacritty/alacritty.yml
     ~/.gitconfig:
-        path: git/gitconfig
+      path: git/gitconfig
     ~/.shell:
 
 - shell:
