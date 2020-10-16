@@ -11,8 +11,6 @@ call plug#begin()
 
 " Git 
 Plug 'tpope/vim-fugitive'
-" Editor 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Language specific
 Plug 'sheerun/vim-polyglot'
 " Commenting
