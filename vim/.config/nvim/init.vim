@@ -24,6 +24,9 @@ Plug 'tpope/vim-repeat'
 " GUI 
 Plug 'gruvbox-community/gruvbox'
 Plug 'altercation/vim-colors-solarized'
+Plug 'marciomazza/vim-brogrammer-theme'
+Plug 'tomasr/molokai'
+Plug 'chriskempson/base16-vim'
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -39,8 +42,7 @@ call plug#end()
 " ----------
 let g:netrw_banner = 0
 let g:netrw_liststyle = 0
-let g:netrw_browse_split = 3
-let g:netrw_winsize = 20
+let g:netrw_browse_split = 0
 
 nnoremap <silent> <Leader>fe :Vexplore<CR>
 
@@ -53,7 +55,15 @@ let g:sneak#label = 1
 " -----------
 " # undotree
 " ----------
-nnoremap <F5> :UndotreeToggle<cr>
+nnoremap <F5> :UndotreeToggle<CR>
+
+" -----------
+" # fugitive
+" ----------
+nnoremap <Leader>g :G<CR>
+nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gh :diffget //2<CR>
+nnoremap <Leader>gl :diffget //3<CR>
 
 " -----------
 " # FZF
@@ -84,7 +94,7 @@ endif
 " Theme settings
 execute "set background=".$BACKGROUND
 colorscheme gruvbox
-let g:gruvbox_contrast_dark='medium'
+let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_contrast_light='hard'
 
 " Statusline
