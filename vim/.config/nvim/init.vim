@@ -15,6 +15,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'sheerun/vim-polyglot'
 " Commenting
 Plug 'tpope/vim-commentary'
+" async building
+Plug 'tpope/vim-dispatch'
 " handy mappings and mnemonics
 Plug 'tpope/vim-unimpaired'
 " surround text 
