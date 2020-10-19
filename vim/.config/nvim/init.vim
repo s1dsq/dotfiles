@@ -28,7 +28,7 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'altercation/vim-colors-solarized'
 Plug 'marciomazza/vim-brogrammer-theme'
 Plug 'tomasr/molokai'
-Plug 'chriskempson/base16-vim'
+Plug 'ajh17/Spacegray.vim'
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -98,6 +98,7 @@ execute "set background=".$BACKGROUND
 colorscheme gruvbox
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_contrast_light='hard'
+let g:spacegray_low_contrast = 1
 
 " Statusline
 set laststatus=2
