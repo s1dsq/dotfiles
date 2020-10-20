@@ -25,7 +25,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 " GUI 
 Plug 'gruvbox-community/gruvbox'
-Plug 'altercation/vim-colors-solarized'
 Plug 'marciomazza/vim-brogrammer-theme'
 Plug 'tomasr/molokai'
 Plug 'ajh17/Spacegray.vim'
@@ -46,7 +45,7 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 0
 let g:netrw_browse_split = 0
 
-nnoremap <silent> <Leader>fe :Vexplore<CR>
+nnoremap <silent> <Leader>f :Vexplore<CR>
 
 " -----------
 " # sneak
@@ -72,8 +71,7 @@ nnoremap <Leader>gl :diffget //3<CR>
 " ----------
 let g:fzf_layout = {'down' : '30%'}
 
-nnoremap <silent> <Leader>fz :FZF<CR>
-nnoremap <silent> <Leader>bf :Buffers<CR>
+nnoremap <silent> <Leader>e :FZF<CR>
 
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -143,19 +141,13 @@ set noswapfile nobackup
 " allows to visually select and repeat using .
 vnoremap . :norm.<CR> 
 
-" Ctrl+c as <Esc> (mapping caps-lock to control)
-" can also map Ctrl+k as <Esc>
-nnoremap <C-c> <Esc>
-inoremap <C-c> <Esc>
-vnoremap <C-c> <Esc>
-snoremap <C-c> <Esc>
-xnoremap <C-c> <Esc>
-cnoremap <C-c> <Esc>
-onoremap <C-c> <Esc>
-lnoremap <C-c> <Esc>
-tnoremap <C-c> <Esc>
+" Very handy mappings
+vnoremap ; :
+vnoremap : ;
+nnoremap ; :
+nnoremap : ;
 
-" Ins-mode complettion
+" Ins-mode completion
 " https://www.vi-improved.org/recommendations/
 " file names
 inoremap <silent> ,f <C-x><C-f> 
@@ -165,12 +157,6 @@ inoremap <silent> ,i <C-x><C-i>
 inoremap <silent> ,l <C-x><C-l> 
 " keywords (cur file)
 inoremap <silent> ,n <C-x><C-n> 
-" omni-completion
-inoremap <silent> ,o <C-x><C-o> 
-" tags
-inoremap <silent> ,t <C-x><C-]> 
-" user-defined
-inoremap <silent> ,u <C-x><C-u> 
 " vim-commands
 inoremap <silent> ,v <C-x><C-v> 
 
@@ -180,6 +166,12 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
+
+" kill bad habit 
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
 
 " resize windows quickly
 noremap <silent> <C-Left> :vertical resize -5<CR>
