@@ -5,16 +5,16 @@
 	pager = less
 	excludesFile = ~/.gitignore_global
 [alias]
-	gr = log --oneline --graph --decorate --pretty=line
-	gra = gr --all
-	grp = gr --patch
-	grs = gr --stat
-	st = status -sb
-	sts = stash
+	l = log --oneline --graph --decorate --pretty=line
+	la = l --all
+	lp = l --patch
+	ls = l --stat
+	s = status -sb
+	st = stash
 	df = diff
-	ck = checkout
-	cm = commit
-	cma = commit --amend --no-edit
+	co = checkout
+	c = commit
+	ca = commit --amend --no-edit
 	br = branch
 	rb = rebase
 	unstage = reset HEAD --
