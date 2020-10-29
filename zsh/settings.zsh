@@ -30,6 +30,7 @@ bindkey -a 'u' undo
 bindkey -a '^R' redo
 
 bindkey -a '^V' edit-command-line
+bindkey "^?" backward-delete-char
 # --- SETTINGS ---
 
 # --- EXPORTS ---

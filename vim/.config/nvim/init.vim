@@ -23,6 +23,8 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 " repeat stuff
 Plug 'tpope/vim-repeat'
+" better netrw
+Plug 'tpope/vim-vinegar'
 " GUI 
 Plug 'gruvbox-community/gruvbox'
 Plug 'marciomazza/vim-brogrammer-theme'
