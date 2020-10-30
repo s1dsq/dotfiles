@@ -17,7 +17,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 " async building
 Plug 'tpope/vim-dispatch'
-" handy mappings and mnemonics
+" handy mappings 
 Plug 'tpope/vim-unimpaired'
 " surround text 
 Plug 'tpope/vim-surround'
@@ -28,8 +28,9 @@ Plug 'tpope/vim-vinegar'
 " GUI 
 Plug 'gruvbox-community/gruvbox'
 Plug 'marciomazza/vim-brogrammer-theme'
-Plug 'tomasr/molokai'
 Plug 'ajh17/Spacegray.vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'dracula/vim'
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -39,15 +40,6 @@ Plug 'justinmk/vim-sneak'
 Plug 'mbbill/undotree'
 
 call plug#end() 
-
-" -----------
-" # netrw
-" ----------
-let g:netrw_banner = 0
-let g:netrw_liststyle = 0
-let g:netrw_browse_split = 0
-
-nnoremap <silent> <Leader>f :Vexplore<CR>
 
 " -----------
 " # sneak
@@ -107,35 +99,23 @@ set statusline=%<\ %f\ %m%r%=\ %y\ L:\ \%l\/\%L\ C:\ \%c\
 " =============================================================================
 " # Editor settings
 " =============================================================================
-" detect filetype plugins and indents
-filetype plugin indent on 
-" try to indent automatically
-set autoindent
-" syntax highlighting
-syntax on
-" unload buffer when leaving
-set hidden
-" enable mouse for all modes
-set mouse=a
-" https://www.reddit.com/r/vim/wiki/tabstop
-set tabstop=8 softtabstop=4 shiftwidth=4 expandtab
-" copied text goes into "" register (default buffer for mac) 
-set clipboard=unnamed 
-" split vertical window to the right and below
-set splitright splitbelow
-" line numbering
-set number relativenumber 
-" write when changing buffer, read when files changes outside of vim
-set autowrite autoread
-" fold according to syntax
-set foldmethod=syntax
-" search relative to current file and directory
-set path=.,,**
-" save undos
-set undofile
-set undodir=~/.vim/undodir
-" remove annoyance
-set noswapfile nobackup
+filetype plugin indent on               " detect filetype plugins and indents
+set autoindent                          
+syntax on                               
+set hidden                              " unload buffer when leaving
+set mouse=a                             " enable mouse for all modes
+set expandtab 
+set tabstop=8 softtabstop=4 shiftwidth=4        " https://www.reddit.com/r/vim/wiki/tabstop
+set clipboard=unnamed                   " copied text goes into "" register (default clipboard for mac) 
+set splitright splitbelow               " split vertical window to the right and below
+set number relativenumber               " line numbering
+set autowrite autoread                  " write when changing buffer, read when files changes outside of vim
+set foldmethod=syntax                   " fold according to syntax
+set path=.,,**                          " search relative to current file and directory
+set undofile undodir=~/.vim/undodir     " save undos
+set noswapfile nobackup                 " remove annoyance
+set shortmess+=I                        " don't show startup message
+set showmatch                           " show matching braces
 
 " =============================================================================
 " # Keyboard shortcuts
@@ -169,17 +149,16 @@ nnoremap <C-l> <C-w>l
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 
-" kill bad habit 
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop>
-
 " resize windows quickly
 noremap <silent> <C-Left> :vertical resize -5<CR>
 noremap <silent> <C-Right> :vertical resize +5<CR>
 noremap <silent> <C-Up> :resize +5<CR>
 noremap <silent> <C-Down> :resize -5<CR>
+
+" commonly accessed
+autocmd BufWritePost init.vim source $MYVIMRC
+autocmd BufWritePost .init_local.vim source $MYVIMRC
+nnoremap <Leader>v :vsplit $MYVIMRC<CR>
 
 " Allow local customization to init.vim
 let $LOCALFILE=expand("~/.init_local.vim")
