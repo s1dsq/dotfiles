@@ -11,3 +11,51 @@
 [submodule "zsh/zsh-background-notify"]
 	path = zsh/zsh-background-notify
 	url = https://github.com/t413/zsh-background-notify
+[submodule "vim/.config/nvim/pack/plugins/start/fugitive"]
+	path = vim/.config/nvim/pack/plugins/start/fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "vim/.config/nvim/pack/plugins/start/unimpaired"]
+	path = vim/.config/nvim/pack/plugins/start/unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "vim/.config/nvim/pack/plugins/start/dispatch"]
+	path = vim/.config/nvim/pack/plugins/start/dispatch
+	url = https://github.com/tpope/vim-dispatch.git
+[submodule "vim/.config/nvim/pack/plugins/start/commentary"]
+	path = vim/.config/nvim/pack/plugins/start/commentary
+	url = https://github.com/tpope/vim-commentary.git
+[submodule "vim/.config/nvim/pack/plugins/start/surround"]
+	path = vim/.config/nvim/pack/plugins/start/surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "vim/.config/nvim/pack/plugins/start/repeat"]
+	path = vim/.config/nvim/pack/plugins/start/repeat
+	url = https://github.com/tpope/vim-repeat.git
+[submodule "vim/.config/nvim/pack/plugins/start/vinegar"]
+	path = vim/.config/nvim/pack/plugins/start/vinegar
+	url = https://github.com/tpope/vim-vinegar.git
+[submodule "vim/.config/nvim/pack/plugins/start/vim-sneak"]
+	path = vim/.config/nvim/pack/plugins/start/vim-sneak
+	url = https://github.com/justinmk/vim-sneak.git
+[submodule "vim/.config/nvim/pack/plugins/start/gruvbox"]
+	path = vim/.config/nvim/pack/plugins/start/gruvbox
+	url = https://github.com/gruvbox-community/gruvbox.git
+[submodule "vim/.config/nvim/pack/plugins/start/nord-vim"]
+	path = vim/.config/nvim/pack/plugins/start/nord-vim
+	url = https://github.com/arcticicestudio/nord-vim.git
+[submodule "vim/.config/nvim/pack/plugins/start/Spacegray.vim"]
+	path = vim/.config/nvim/pack/plugins/start/Spacegray.vim
+	url = https://github.com/ajh17/Spacegray.vim.git
+[submodule "vim/.config/nvim/pack/plugins/start/undotree"]
+	path = vim/.config/nvim/pack/plugins/start/undotree
+	url = https://github.com/mbbill/undotree.git
+[submodule "vim/.config/nvim/pack/plugins/start/vim"]
+	path = vim/.config/nvim/pack/plugins/start/vim
+	url = https://github.com/dracula/vim.git
+[submodule "vim/.config/nvim/pack/plugins/start/vim-brogrammer-theme"]
+	path = vim/.config/nvim/pack/plugins/start/vim-brogrammer-theme
+	url = https://github.com/marciomazza/vim-brogrammer-theme.git
+[submodule "vim/.config/nvim/pack/plugins/start/vim-polyglot"]
+	path = vim/.config/nvim/pack/plugins/start/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot.git
+[submodule "vim/.config/nvim/pack/plugins/start/fzf.vim"]
+	path = vim/.config/nvim/pack/plugins/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git
