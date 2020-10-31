@@ -1,68 +1,5 @@
 set nocompatible            
-filetype off                 
-
 let g:mapleader="\<Space>"
-
-" =============================================================================
-" # PLUGINS
-" =============================================================================
-
-" -----------
-" # sneak
-" ----------
-let g:sneak#s_next = 1
-let g:sneak#label = 1
-
-" -----------
-" # undotree
-" ----------
-nnoremap <F5> :UndotreeToggle<CR>
-
-" -----------
-" # fugitive
-" ----------
-nnoremap <Leader>g :G<CR>
-nnoremap <Leader>gb :Gblame<CR>
-nnoremap <Leader>gh :diffget //2<CR>
-nnoremap <Leader>gl :diffget //3<CR>
-
-" -----------
-" # FZF
-" ----------
-" system fzf
-set rtp+=~/.fzf
-let g:fzf_layout = {'down' : '30%'}
-
-nnoremap <silent> <Leader>e :FZF<CR>
-
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit',
-  \ 'ctrl-y': {lines -> setreg('*', join(lines, "\n"))}}
-
-" -----------
-" # Colors and Theme
-" ----------
-" deal with colors
-if !has('gui_running')
-  set t_co=256
-endif
-if (match($term, "-256color") != -1) && (match($term, "screen-256color") == -1)
-  " screen does not (yet) support truecolor
-  set termguicolors
-endif
-
-" Theme settings
-execute "set background=".$BACKGROUND
-colorscheme gruvbox
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_contrast_light='hard'
-let g:spacegray_low_contrast = 0
-
-" Statusline
-set laststatus=2
-set statusline=%<\ %f\ %m%r%=\ %y\ L:\ \%l\/\%L\ C:\ \%c\ 
 
 " =============================================================================
 " # Editor settings
@@ -127,6 +64,67 @@ noremap <silent> <C-Down> :resize -5<CR>
 autocmd BufWritePost init.vim source $MYVIMRC
 autocmd BufWritePost .init_local.vim source $MYVIMRC
 nnoremap <Leader>v :vsplit $MYVIMRC<CR>
+
+" =============================================================================
+" # PLUGINS
+" =============================================================================
+
+" -----------
+" # sneak
+" ----------
+let g:sneak#s_next = 1
+let g:sneak#label = 1
+
+" -----------
+" # undotree
+" ----------
+nnoremap <F5> :UndotreeToggle<CR>
+
+" -----------
+" # fugitive
+" ----------
+nnoremap <Leader>g :G<CR>
+nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gh :diffget //2<CR>
+nnoremap <Leader>gl :diffget //3<CR>
+
+" -----------
+" # FZF
+" ----------
+" system fzf
+set rtp+=~/.fzf
+let g:fzf_layout = {'down' : '30%'}
+
+nnoremap <silent> <Leader>e :FZF<CR>
+
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit',
+  \ 'ctrl-y': {lines -> setreg('*', join(lines, "\n"))}}
+
+" -----------
+" # Colors and Theme
+" ----------
+" deal with colors
+if !has('gui_running')
+  set t_co=256
+endif
+if (match($term, "-256color") != -1) && (match($term, "screen-256color") == -1)
+  " screen does not (yet) support truecolor
+  set termguicolors
+endif
+
+" Theme settings
+execute "set background=".$BACKGROUND
+colorscheme gruvbox
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_light='hard'
+let g:spacegray_low_contrast = 0
+
+" Statusline
+set laststatus=2
+set statusline=%<\ %f\ %m%r%=\ %y\ L:\ \%l\/\%L\ C:\ \%c\ 
 
 " Allow local customization to init.vim
 let $LOCALFILE=expand("~/.init_local.vim")

@@ -47,9 +47,6 @@
 [submodule "vim/.config/nvim/pack/plugins/start/undotree"]
 	path = vim/.config/nvim/pack/plugins/start/undotree
 	url = https://github.com/mbbill/undotree.git
-[submodule "vim/.config/nvim/pack/plugins/start/vim"]
-	path = vim/.config/nvim/pack/plugins/start/vim
-	url = https://github.com/dracula/vim.git
 [submodule "vim/.config/nvim/pack/plugins/start/vim-brogrammer-theme"]
 	path = vim/.config/nvim/pack/plugins/start/vim-brogrammer-theme
 	url = https://github.com/marciomazza/vim-brogrammer-theme.git
@@ -59,3 +56,6 @@
 [submodule "vim/.config/nvim/pack/plugins/start/fzf.vim"]
 	path = vim/.config/nvim/pack/plugins/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
+[submodule "vim/.config/nvim/pack/plugins/start/dracula"]
+	path = vim/.config/nvim/pack/plugins/start/dracula
+	url = https://github.com/dracula/vim.git
