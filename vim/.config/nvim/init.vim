@@ -6,40 +6,6 @@ let g:mapleader="\<Space>"
 " =============================================================================
 " # PLUGINS
 " =============================================================================
-" Load Plugins
-call plug#begin()
-
-" Git 
-Plug 'tpope/vim-fugitive'
-" Language specific
-Plug 'sheerun/vim-polyglot'
-" Commenting
-Plug 'tpope/vim-commentary'
-" async building
-Plug 'tpope/vim-dispatch'
-" handy mappings 
-Plug 'tpope/vim-unimpaired'
-" surround text 
-Plug 'tpope/vim-surround'
-" repeat stuff
-Plug 'tpope/vim-repeat'
-" better netrw
-Plug 'tpope/vim-vinegar'
-" GUI 
-Plug 'gruvbox-community/gruvbox'
-Plug 'marciomazza/vim-brogrammer-theme'
-Plug 'ajh17/Spacegray.vim'
-Plug 'arcticicestudio/nord-vim'
-Plug 'dracula/vim'
-" Fuzzy finder
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-" Movement
-Plug 'justinmk/vim-sneak'
-" Undo
-Plug 'mbbill/undotree'
-
-call plug#end() 
 
 " -----------
 " # sneak
@@ -63,6 +29,8 @@ nnoremap <Leader>gl :diffget //3<CR>
 " -----------
 " # FZF
 " ----------
+" system fzf
+set rtp+=~/.fzf
 let g:fzf_layout = {'down' : '30%'}
 
 nnoremap <silent> <Leader>e :FZF<CR>
@@ -90,7 +58,7 @@ execute "set background=".$BACKGROUND
 colorscheme gruvbox
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_contrast_light='hard'
-let g:spacegray_low_contrast = 1
+let g:spacegray_low_contrast = 0
 
 " Statusline
 set laststatus=2
