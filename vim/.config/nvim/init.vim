@@ -1,15 +1,28 @@
 set nocompatible            
 let g:mapleader="\<Space>"
 
+let $MYVIMRC="~/.config/nvim/init.vim"
+let $MYVIMDIR="~/.config/nvim"
+
+" source on save
+autocmd BufWritePost init.vim source $MYVIMRC
+autocmd BufWritePost .init_local.vim source $MYVIMRC
+
+" Theme settings
+set background=dark
+colorscheme spacegray
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_light='hard'
+
 " =============================================================================
 " # Editor settings
 " =============================================================================
 filetype plugin indent on               " detect filetype plugins and indents
-set autoindent                          
 syntax on                               
+set autoindent                          
 set hidden                              " unload buffer when leaving
 set mouse=a                             " enable mouse for all modes
-set expandtab 
+set expandtab                           " use spaces instead of tab
 set tabstop=8 softtabstop=4 shiftwidth=4        " https://www.reddit.com/r/vim/wiki/tabstop
 set clipboard=unnamed                   " copied text goes into "" register (default clipboard for mac) 
 set splitright splitbelow               " split vertical window to the right and below
@@ -34,20 +47,6 @@ vnoremap : ;
 nnoremap ; :
 nnoremap : ;
 
-" Ins-mode completion
-" https://www.vi-improved.org/recommendations/
-" file names
-inoremap <silent> ,f <C-x><C-f> 
-" keywords (cur + incl files)
-inoremap <silent> ,i <C-x><C-i> 
-" whole lines
-inoremap <silent> ,l <C-x><C-l> 
-" keywords (cur file)
-inoremap <silent> ,n <C-x><C-n> 
-" vim-commands
-inoremap <silent> ,v <C-x><C-v> 
-
-" splits 
 " Quick movement between windows
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
@@ -60,10 +59,9 @@ noremap <silent> <C-Right> :vertical resize +5<CR>
 noremap <silent> <C-Up> :resize +5<CR>
 noremap <silent> <C-Down> :resize -5<CR>
 
-" commonly accessed
-autocmd BufWritePost init.vim source $MYVIMRC
-autocmd BufWritePost .init_local.vim source $MYVIMRC
-nnoremap <Leader>v :vsplit $MYVIMRC<CR>
+" commonly accessed files
+nnoremap <Leader>v :e $MYVIMRC<CR>
+nnoremap <leader>f :e <C-R>='$MYVIMDIR/ftplugin/'.&filetype.'.vim'<CR><CR>
 
 " =============================================================================
 " # PLUGINS
@@ -93,6 +91,7 @@ nnoremap <Leader>gl :diffget //3<CR>
 " ----------
 " system fzf
 set rtp+=~/.fzf
+set rtp+=/usr/local/opt/fzf
 let g:fzf_layout = {'down' : '30%'}
 
 nnoremap <silent> <Leader>e :FZF<CR>
@@ -102,25 +101,6 @@ let g:fzf_action = {
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit',
   \ 'ctrl-y': {lines -> setreg('*', join(lines, "\n"))}}
-
-" -----------
-" # Colors and Theme
-" ----------
-" deal with colors
-if !has('gui_running')
-  set t_co=256
-endif
-if (match($term, "-256color") != -1) && (match($term, "screen-256color") == -1)
-  " screen does not (yet) support truecolor
-  set termguicolors
-endif
-
-" Theme settings
-execute "set background=".$BACKGROUND
-colorscheme gruvbox
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_contrast_light='hard'
-let g:spacegray_low_contrast = 0
 
 " Statusline
 set laststatus=2
