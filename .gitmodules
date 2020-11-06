@@ -19,7 +19,7 @@
 	url = https://github.com/ajh17/Spacegray.vim.git
 [submodule "vim/.vim/pack/plugins/start/dispatch"]
 	path = vim/.vim/pack/plugins/start/dispatch
-	url = https://github.com/tpope/vim-commentary.git
+	url = https://github.com/tpope/vim-dispatch.git
 [submodule "vim/.vim/pack/plugins/start/fugitive"]
 	path = vim/.vim/pack/plugins/start/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
