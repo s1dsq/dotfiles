@@ -35,15 +35,13 @@ bindkey "^?" backward-delete-char
 
 # --- EXPORTS ---
 # If nvim exists set editor and manpager
+export EDITOR='vim'
 if exists nvim; then 
-    export EDITOR='nvim'
-    alias vim='nvim'
-    alias ovim="/usr/bin/vim"
-else
-    export EDITOR='vim'
+    export MANPAGER="nvim -c 'set ft=man nu rnu' -"
 fi
-export MANPAGER="$EDITOR -c 'set ft=man nu rnu' -"
 alias e='vim'
+
+alias cg='cd $(git rev-parse --show-toplevel)'
 
 # Commonly used directories
 [[ -d $HOME/.config/nvim ]] && hash -d nvim=$HOME/.config/nvim
@@ -58,7 +56,7 @@ autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
-RPROMPT="\$vcs_info_msg_0_ (%F{yellow}%D{%d %b %Y}%f - %F{white}%D{%H:%M}%f)"
+RPROMPT="\$vcs_info_msg_0_ - (%F{white}%D{%H:%M}%f)"
 zstyle ':vcs_info:git:*' formats '%F{cyan}(%b)%f'
 zstyle ':vcs_info:*' enable git
 # --- PROMPT ---

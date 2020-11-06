@@ -2,15 +2,15 @@
     link:
       create: true
       relink: true
+
 - link:
-    ~/.config/nvim:
-      relink: false
-      path: vim/.config/nvim
+    ~/.config/nvim: vim/.config/nvim
+    ~/.vim: vim/.vim/
     ~/.tmux.conf:
+    ~/.vimrc:
     ~/.zshrc:
     ~/.zsh:
-    ~/.gitconfig:
-      path: git/gitconfig
+    ~/.gitconfig: git/gitconfig
     ~/.shell:
 
 - shell:

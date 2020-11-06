@@ -1,38 +1,58 @@
 [user]
 	name = Siddharth Singh
 	email = singh.siddharth7718@gmail.com
+
 [core]
 	pager = less
 	excludesFile = ~/.gitignore_global
+
 [alias]
 	l = log --oneline --graph --decorate --pretty=line
 	la = l --all
-	lp = l --patch
 	ls = l --stat
 	s = status -sb
 	st = stash
-	df = diff
 	co = checkout
 	c = commit
 	ca = commit --amend --no-edit
-	br = branch
-	rb = rebase
+	ff = merge --ff
+	noff = merge --no-ff
 	unstage = reset HEAD --
+	gr = grep -C 1 -I
+	root = rev-parse --show-toplevel
+	shs = show --format=fuller --stat
+	showtool = ! "st() { if [ -z $1 ]; then c='HEAD'; else c=$1; fi; git difftool $c~..$c; }; st" # show what has changed in parent/child using git difftool
+	news = !git fetch && git log --format=full @..@{u}
+
 [pretty]
 	line = "%C(auto)%h %<|(60,trunc)%s %C(green)(%cd) %C(blue)<%an>%C(auto)%d"
+
 [pull] 
 	ff = only
+
 [log]
-	date=format:"%a %d/%m %H:%M"
+	date=format:"%a %d/%m/%Y %H:%M"
+
 [include]
 	path = ~/.gitconfig_local
+
 [merge]
-	tool = nfugitive
-[mergetool "nfugitive"]
-	cmd = nvim -f -c "Gdiff" "$MERGED"
+	tool = nvimdiff4
+	conflictstyle = diff3
+
+[mergetool "nvimdiff4"]
+	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+	trustExitCode = true
+
 [diff]
 	tool = nvimdiff2
+
 [difftool "nvimdiff2"]
 	cmd = nvim -d $LOCAL $REMOTE
+
 [difftool]
 	trustExitCode = true
+
+[grep]
+	lineNumber = true
+	fallbackToNoIndex = true
