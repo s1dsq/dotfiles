@@ -3,13 +3,13 @@ syntax on
 let g:mapleader="\<Space>"
 
 " theme 
-set bg=dark
-colo spacegray
+colorscheme spacegray
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_contrast_light='hard'
+let g:spacegray_low_contrast = 0
 
 " custom variables
-let $VRC="~/.vimrc"
+let $RC="~/.vimrc"
 let $VD="~/.vim"
 
 " basics 
@@ -31,16 +31,29 @@ set noswapfile nobackup                                                         
 set shortmess+=I                                                                " don't show startup message
 set showmatch                                                                   
 set hlsearch incsearch                                                          
-let &cursorline = &bg == 'dark' ? 1 : 0                                         
 set linebreak
+set wildcharm=<C-z>
+set diffopt+=algorithm:patience
+
+" cursor in vim modes
+if !has('nvim')
+  " Insert mode
+  let &t_SI = "\<Esc>[6 q"
+  " Replace mode
+  if has("patch-7.4-687")
+    let &t_SR = "\<Esc>[4 q"
+  endif
+  " Normal mode
+  let &t_EI = "\<Esc>[2 q"
+endif
 
 " UI
 set laststatus=2
 set statusline=%<\ [%n]\ %f\ %m%r%=\ %y\ L:\ \%l\/\%L\ C:\ \%c\ 
 set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " remaps
+nnoremap Y y$
 vnoremap ; :
 vnoremap : ;
 nnoremap ; :
@@ -64,7 +77,7 @@ nnoremap ,V :vert sfind <C-R>=fnameescape(expand('%:p:h')).'**/*'<CR>
 nnoremap <Leader>aa :bufdo argadd<CR>
 
 " commonly accessed files
-nnoremap <Leader>v :e $VRC<CR>
+nnoremap <Leader>v :e $RC<CR>
 nnoremap <leader>f :e <C-R>='$VD/ftplugin/'.&filetype.'.vim'<CR><CR>
 
 " utils
@@ -85,8 +98,8 @@ nnoremap <F5> :UndotreeToggle<CR>
 " vimrc specific
 augroup VIMRC
   autocmd!
-  autocmd BufWritePost .vimrc source $VRC
-  autocmd BufWritePost .vimrc_local source $VRC
+  autocmd BufWritePost .vimrc source $RC
+  autocmd BufWritePost .vimrc_local source $RC
 augroup END
 
 " Allow local customization to init.vim
