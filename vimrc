@@ -51,6 +51,8 @@ set hlsearch incsearch
 set linebreak
 set wildcharm=<C-z>
 set diffopt+=algorithm:patience
+set grepprg=git\ grep\ --no-index\ --exclude-standard\ --column\ -n
+set grepformat=%f:%l:%c:%m
 
 " cursor in vim modes
 if !has('nvim')
@@ -93,6 +95,14 @@ nnoremap ,S :sfind <C-R>=fnameescape(expand('%:p:h')).'**/*'<CR>
 nnoremap ,V :vert sfind <C-R>=fnameescape(expand('%:p:h')).'**/*'<CR>
 nnoremap <Leader>aa :bufdo argadd<CR>
 
+" External Grep (faster than just running grep)
+command! -nargs=+ -complete=file_in_path -bar Grep cgetexpr system(&grepprg . ' <args>')
+nnoremap ,g :Grep
+
+" better completion menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 " commonly accessed files
 nnoremap <Leader>v :e $RC<CR>
 nnoremap <leader>f :e <C-R>='$VD/ftplugin/'.&filetype.'.vim'<CR><CR>
@@ -111,6 +121,15 @@ let g:sneak#label = 1
 
 " undotree
 nnoremap <F5> :UndotreeToggle<CR>
+
+" vim-qf
+nmap q/ <Plug>(qf_qf_toggle)
+
+" use dirvish instead of netrw
+let g:loaded_netrwPlugin = 1
+command! -nargs=? -complete=dir Explore Dirvish <args>
+command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>
+command! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>
 
 " vimrc specific
 augroup VIMRC
