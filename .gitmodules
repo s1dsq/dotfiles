@@ -12,41 +12,47 @@
 	path = zsh/zsh-background-notify
 	url = https://github.com/t413/zsh-background-notify
 [submodule "vim/.vim/pack/plugins/start/commentary"]
-	path = vim/.vim/pack/plugins/start/commentary
+	path = vim/.vim/pack/plugins/opt/commentary
 	url = https://github.com/tpope/vim-commentary.git
 [submodule "vim/.vim/pack/plugins/start/Spacegray.vim"]
-	path = vim/.vim/pack/plugins/start/Spacegray.vim
+	path = vim/.vim/pack/colors/start/Spacegray.vim
 	url = https://github.com/ajh17/Spacegray.vim.git
 [submodule "vim/.vim/pack/plugins/start/dispatch"]
-	path = vim/.vim/pack/plugins/start/dispatch
+	path = vim/.vim/pack/plugins/opt/dispatch
 	url = https://github.com/tpope/vim-dispatch.git
-[submodule "vim/.vim/pack/plugins/start/fugitive"]
-	path = vim/.vim/pack/plugins/start/fugitive
-	url = https://github.com/tpope/vim-fugitive.git
 [submodule "vim/.vim/pack/plugins/start/gruvbox"]
-	path = vim/.vim/pack/plugins/start/gruvbox
+	path = vim/.vim/pack/colors/start/gruvbox
 	url = https://github.com/gruvbox-community/gruvbox.git
 [submodule "vim/.vim/pack/plugins/start/surround"]
-	path = vim/.vim/pack/plugins/start/surround
+	path = vim/.vim/pack/plugins/opt/surround
 	url = https://github.com/tpope/vim-surround.git
 [submodule "vim/.vim/pack/plugins/start/undotree"]
-	path = vim/.vim/pack/plugins/start/undotree
+	path = vim/.vim/pack/plugins/opt/undotree
 	url = https://github.com/mbbill/undotree.git
 [submodule "vim/.vim/pack/plugins/start/unimpaired"]
-	path = vim/.vim/pack/plugins/start/unimpaired
+	path = vim/.vim/pack/plugins/opt/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
 [submodule "vim/.vim/pack/plugins/start/vim-polyglot"]
-	path = vim/.vim/pack/plugins/start/vim-polyglot
+	path = vim/.vim/pack/plugins/opt/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
 [submodule "vim/.vim/pack/plugins/start/vim-sneak"]
-	path = vim/.vim/pack/plugins/start/vim-sneak
+	path = vim/.vim/pack/plugins/opt/vim-sneak
 	url = https://github.com/justinmk/vim-sneak.git
-[submodule "vim/.vim/pack/plugins/start/vinegar"]
-	path = vim/.vim/pack/plugins/start/vinegar
-	url = https://github.com/tpope/vim-vinegar.git
 [submodule "vim/.vim/pack/plugins/start/repeat"]
-	path = vim/.vim/pack/plugins/start/repeat
+	path = vim/.vim/pack/plugins/opt/repeat
 	url = https://github.com/tpope/vim-repeat.git
 [submodule "vim/.vim/pack/plugins/start/vim-git"]
-	path = vim/.vim/pack/plugins/start/vim-git
+	path = vim/.vim/pack/plugins/opt/vim-git
 	url = https://github.com/tpope/vim-git.git
+[submodule "vim/.vim/pack/colors/start/Apprentice"]
+	path = vim/.vim/pack/colors/start/Apprentice
+	url = https://github.com/romainl/Apprentice.git
+[submodule "vim/.vim/pack/plugins/start/vim-dirvish"]
+	path = vim/.vim/pack/plugins/opt/vim-dirvish
+	url = https://github.com/justinmk/vim-dirvish.git
+[submodule "vim/.vim/pack/plugins/start/goyo"]
+	path = vim/.vim/pack/plugins/opt/goyo
+	url = https://github.com/junegunn/goyo.vim.git
+[submodule "vim/.vim/pack/plugins/start/vim-qf"]
+	path = vim/.vim/pack/plugins/opt/vim-qf
+	url = https://github.com/romainl/vim-qf.git
