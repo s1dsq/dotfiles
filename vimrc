@@ -1,12 +1,29 @@
+filetype off
+
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_light='hard'
+let g:spacegray_low_contrast = 0
+let g:polyglot_disabled = ['go']
+
+packadd! vim-polyglot
+packadd! commentary
+packadd! dispatch
+packadd! goyo
+packadd! repeat
+packadd! surround
+packadd! undotree
+packadd! unimpaired
+packadd! vim-dirvish
+packadd! vim-git
+packadd! vim-qf
+packadd! vim-sneak
+
 filetype plugin indent on                                                       
 syntax on                               
 let g:mapleader="\<Space>"
 
 " theme 
-colorscheme spacegray
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_contrast_light='hard'
-let g:spacegray_low_contrast = 0
+colorscheme apprentice
 
 " custom variables
 let $RC="~/.vimrc"
@@ -23,7 +40,7 @@ set splitright splitbelow
 set number relativenumber                                                       
 set autowrite autoread                                                          
 set foldmethod=syntax                                                           
-set path=.,,**                                                                 
+set path=.,,**
 set wildmenu                                                                    
 set wildignore+=**/node_modules/**,**/out-tsc/**
 set undofile undodir=~/.vim/undodir                                             " save undos

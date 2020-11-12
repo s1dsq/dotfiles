@@ -56,3 +56,4 @@
 [grep]
 	lineNumber = true
 	fallbackToNoIndex = true
+	column = true
