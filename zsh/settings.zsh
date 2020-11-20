@@ -49,7 +49,7 @@ alias cg='cd $(git rev-parse --show-toplevel)'
 
 # --- PROMPT ---
 # pwd last-executed-command-status shell-privilege
-PROMPT='%B%3~%b %(?.%F{green}√.%F{red}?%?)%f %(!.#.>) '
+PROMPT='%B%~%b'$'\n''%(?.%F{green}√.%F{red}?%?)%f %(!.#.>) '
 
 # (git banch) (date - time)
 autoload -Uz vcs_info

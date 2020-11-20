@@ -20,9 +20,6 @@
 [submodule "vim/.vim/pack/plugins/start/dispatch"]
 	path = vim/.vim/pack/plugins/opt/dispatch
 	url = https://github.com/tpope/vim-dispatch.git
-[submodule "vim/.vim/pack/plugins/start/gruvbox"]
-	path = vim/.vim/pack/colors/start/gruvbox
-	url = https://github.com/gruvbox-community/gruvbox.git
 [submodule "vim/.vim/pack/plugins/start/surround"]
 	path = vim/.vim/pack/plugins/opt/surround
 	url = https://github.com/tpope/vim-surround.git

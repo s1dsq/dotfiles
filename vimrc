@@ -1,10 +1,33 @@
-filetype off
+let g:did_install_default_menus = 1  " avoid stupid menu.vim (saves ~100ms)
 
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_contrast_light='hard'
+if exists('g:vscode')
+    nnoremap Y y$
+    vnoremap ; :
+    vnoremap : ;
+    nnoremap ; :
+    nnoremap : ;
+
+    nnoremap <silent> <c-k> <Cmd>call VSCodeCall('editor.action.showHover')<CR>
+    nnoremap <silent> gD <Cmd>call VSCodeCall('editor.action.goToImplementation')<CR>
+    nnoremap <silent> gr <Cmd>call VSCodeCall('references-view.find')<CR>
+    nnoremap <silent> gR <Cmd>call VSCodeCall('references-view.findImplementations')<CR>
+    " nnoremap <silent> <delete> <Cmd>call VSCodeCall('editor.debug.action.toggleBreakpoint')<CR>
+    " nnoremap <silent> gO <Cmd>call VSCodeCall('workbench.action.gotoSymbol')<CR>
+    " nnoremap <silent> gO <Cmd>call VSCodeCall('outline.focus')<CR>
+    " nnoremap <silent> z/ <Cmd>call VSCodeCall('workbench.action.showAllSymbols')<CR>
+    nnoremap <silent> - <Cmd>call VSCodeCall('workbench.files.action.showActiveFileInExplorer')<CR>
+    " nnoremap <silent> <c-b> <Cmd>call VSCodeCall('workbench.action.showAllEditorsByMostRecentlyUsed')<CR>
+
+    " nnoremap <silent> UD <Cmd>call VSCodeCall('git.openChange')<CR>
+    " nnoremap <silent> UW <Cmd>call VSCodeCall('git.stage')<CR>
+    nnoremap <silent> UB <Cmd>call VSCodeCall('gitlens.toggleFileBlame')<CR>
+    finish
+endif
+
 let g:spacegray_low_contrast = 0
 let g:polyglot_disabled = ['go']
 
+packadd! ale
 packadd! vim-polyglot
 packadd! commentary
 packadd! dispatch
@@ -21,9 +44,6 @@ packadd! vim-sneak
 filetype plugin indent on                                                       
 syntax on                               
 let g:mapleader="\<Space>"
-
-" theme 
-colorscheme apprentice
 
 " custom variables
 let $RC="~/.vimrc"
@@ -53,6 +73,9 @@ set wildcharm=<C-z>
 set diffopt+=algorithm:patience
 set grepprg=git\ grep\ --no-index\ --exclude-standard\ --column\ -n
 set grepformat=%f:%l:%c:%m
+if executable('rg')
+    set grepprg=rg\ --no-heading\ --vimgrep
+endif
 
 " cursor in vim modes
 if !has('nvim')
@@ -93,7 +116,6 @@ nnoremap ,v :vert sfind *
 nnoremap ,F :find <C-R>=fnameescape(expand('%:p:h')).'**/*'<CR>
 nnoremap ,S :sfind <C-R>=fnameescape(expand('%:p:h')).'**/*'<CR>
 nnoremap ,V :vert sfind <C-R>=fnameescape(expand('%:p:h')).'**/*'<CR>
-nnoremap <Leader>aa :bufdo argadd<CR>
 
 " External Grep (faster than just running grep)
 command! -nargs=+ -complete=file_in_path -bar Grep cgetexpr system(&grepprg . ' <args>')
@@ -123,7 +145,19 @@ let g:sneak#label = 1
 nnoremap <F5> :UndotreeToggle<CR>
 
 " vim-qf
-nmap q/ <Plug>(qf_qf_toggle)
+nmap \q <Plug>(qf_qf_toggle)
+
+" ale
+highlight link ALEWarningSign Todo
+highlight link ALEErrorSign WarningMsg
+highlight link ALEVirtualTextWarning Todo
+highlight link ALEVirtualTextInfo Todo
+highlight link ALEVirtualTextError WarningMsg
+highlight ALEError guibg=#330000
+highlight ALEWarning guibg=#333300
+let g:ale_sign_error = "✖"
+let g:ale_sign_warning = "⚠"
+let g:ale_sign_info = "i"
 
 " use dirvish instead of netrw
 let g:loaded_netrwPlugin = 1
