@@ -11,20 +11,12 @@ if exists('g:vscode')
     nnoremap <silent> gD <Cmd>call VSCodeCall('editor.action.goToImplementation')<CR>
     nnoremap <silent> gr <Cmd>call VSCodeCall('references-view.find')<CR>
     nnoremap <silent> gR <Cmd>call VSCodeCall('references-view.findImplementations')<CR>
-    " nnoremap <silent> <delete> <Cmd>call VSCodeCall('editor.debug.action.toggleBreakpoint')<CR>
-    " nnoremap <silent> gO <Cmd>call VSCodeCall('workbench.action.gotoSymbol')<CR>
-    " nnoremap <silent> gO <Cmd>call VSCodeCall('outline.focus')<CR>
-    " nnoremap <silent> z/ <Cmd>call VSCodeCall('workbench.action.showAllSymbols')<CR>
     nnoremap <silent> - <Cmd>call VSCodeCall('workbench.files.action.showActiveFileInExplorer')<CR>
-    " nnoremap <silent> <c-b> <Cmd>call VSCodeCall('workbench.action.showAllEditorsByMostRecentlyUsed')<CR>
-
-    " nnoremap <silent> UD <Cmd>call VSCodeCall('git.openChange')<CR>
-    " nnoremap <silent> UW <Cmd>call VSCodeCall('git.stage')<CR>
     nnoremap <silent> UB <Cmd>call VSCodeCall('gitlens.toggleFileBlame')<CR>
     finish
 endif
 
-let g:spacegray_low_contrast = 0
+colorscheme flattened_light
 let g:polyglot_disabled = ['go']
 
 packadd! ale
@@ -40,9 +32,11 @@ packadd! vim-dirvish
 packadd! vim-git
 packadd! vim-qf
 packadd! vim-sneak
+packadd! vim-gtfo
+packadd! vim-obsession
 
+syntax on
 filetype plugin indent on                                                       
-syntax on                               
 let g:mapleader="\<Space>"
 
 " custom variables
@@ -92,7 +86,6 @@ endif
 " UI
 set laststatus=2
 set statusline=%<\ [%n]\ %f\ %m%r%=\ %y\ L:\ \%l\/\%L\ C:\ \%c\ 
-set colorcolumn=80
 
 " remaps
 nnoremap Y y$
@@ -133,6 +126,7 @@ nnoremap <leader>f :e <C-R>='$VD/ftplugin/'.&filetype.'.vim'<CR><CR>
 nnoremap gb :echo system('git rev-parse --abbrev-ref @ <bar> tr -d "\n"')<CR>
 nnoremap gB :silent !tig blame % +<C-r>=expand(line('.'))<CR><CR>:silent redraw!<CR>
 nnoremap gO :silent !tig<CR>:silent redraw!<CR>
+command! -range GB echo join(systemlist("git -C " . shellescape(expand('%:p:h')) . " blame -L <line1>,<line2> " . expand('%:t')), "\n")
 nnoremap <Leader>gh :diffget LOCAL<CR>
 nnoremap <Leader>gl :diffget REMOTE<CR>
 

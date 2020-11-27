@@ -5,3 +5,5 @@ setlocal wrap
 setlocal nonumber
 setlocal norelativenumber 
 setlocal suffixesadd=.md
+
+nnoremap gp :silent %!prettier --stdin-filepath %<CR>
