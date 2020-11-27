@@ -53,3 +53,9 @@
 [submodule "vim/.vim/pack/plugins/start/vim-qf"]
 	path = vim/.vim/pack/plugins/opt/vim-qf
 	url = https://github.com/romainl/vim-qf.git
+[submodule "vim/.vim/pack/plugins/opt/vim-obsession"]
+	path = vim/.vim/pack/plugins/opt/vim-obsession
+	url = https://github.com/tpope/vim-obsession.git
+[submodule "vim/.vim/pack/plugins/opt/vim-gtfo"]
+	path = vim/.vim/pack/plugins/opt/vim-gtfo
+	url = https://github.com/justinmk/vim-gtfo.git
