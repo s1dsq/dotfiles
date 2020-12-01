@@ -67,9 +67,6 @@ set wildcharm=<C-z>
 set diffopt+=algorithm:patience
 set grepprg=git\ grep\ --no-index\ --exclude-standard\ --column\ -n
 set grepformat=%f:%l:%c:%m
-if executable('rg')
-    set grepprg=rg\ --no-heading\ --vimgrep
-endif
 
 " cursor in vim modes
 if !has('nvim')
@@ -97,6 +94,8 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
+map <C-U> <C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
+map <C-D> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
 
 " moving around
 nnoremap <BS> :b#<CR>
@@ -110,9 +109,15 @@ nnoremap ,F :find <C-R>=fnameescape(expand('%:p:h')).'**/*'<CR>
 nnoremap ,S :sfind <C-R>=fnameescape(expand('%:p:h')).'**/*'<CR>
 nnoremap ,V :vert sfind <C-R>=fnameescape(expand('%:p:h')).'**/*'<CR>
 
-" External Grep (faster than just running grep)
-command! -nargs=+ -complete=file_in_path -bar Grep cgetexpr system(&grepprg . ' <args>')
+" tweak builtin grep to work a little better
+" (https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3)
+command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args> | redraw!
 nnoremap ,g :Grep
+
+" better global (https://gist.github.com/romainl/f7e2e506dc4d7827004e4994f1be2df6)
+" makes result of :global persist in location list
+set errorformat^=%f:%l:%c\ %m
+command! -nargs=1 Global lgetexpr filter(map(getline(1,'$'), {key, val -> expand("%") . ":" . (key + 1) . ":1 " . val }), { idx, val -> val =~ <q-args> })
 
 " better completion menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -166,7 +171,7 @@ augroup VIMRC
   autocmd BufWritePost .vimrc_local source $RC
 augroup END
 
-" Allow local customization to init.vim
+" Allow local customizations
 let $LOCALFILE=expand("~/.vimrc_local")
 if filereadable($LOCALFILE)
     source $LOCALFILE
