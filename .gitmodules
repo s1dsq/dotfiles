@@ -14,9 +14,6 @@
 [submodule "vim/.vim/pack/plugins/start/commentary"]
 	path = vim/.vim/pack/plugins/opt/commentary
 	url = https://github.com/tpope/vim-commentary.git
-[submodule "vim/.vim/pack/plugins/start/dispatch"]
-	path = vim/.vim/pack/plugins/opt/dispatch
-	url = https://github.com/tpope/vim-dispatch.git
 [submodule "vim/.vim/pack/plugins/start/surround"]
 	path = vim/.vim/pack/plugins/opt/surround
 	url = https://github.com/tpope/vim-surround.git
@@ -29,9 +26,6 @@
 [submodule "vim/.vim/pack/plugins/start/repeat"]
 	path = vim/.vim/pack/plugins/opt/repeat
 	url = https://github.com/tpope/vim-repeat.git
-[submodule "vim/.vim/pack/plugins/start/vim-git"]
-	path = vim/.vim/pack/plugins/opt/vim-git
-	url = https://github.com/tpope/vim-git.git
 [submodule "vim/.vim/pack/plugins/start/vim-dirvish"]
 	path = vim/.vim/pack/plugins/opt/vim-dirvish
 	url = https://github.com/justinmk/vim-dirvish.git
@@ -41,9 +35,6 @@
 [submodule "vim/.vim/pack/plugins/opt/vim-obsession"]
 	path = vim/.vim/pack/plugins/opt/vim-obsession
 	url = https://github.com/tpope/vim-obsession.git
-[submodule "vim/.vim/pack/plugins/opt/vim-gtfo"]
-	path = vim/.vim/pack/plugins/opt/vim-gtfo
-	url = https://github.com/justinmk/vim-gtfo.git
 [submodule "vim/.vim/pack/colors/start/flattened"]
 	path = vim/.vim/pack/colors/start/flattened
 	url = https://github.com/romainl/flattened.git
