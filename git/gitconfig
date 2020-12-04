@@ -11,7 +11,7 @@
 	la = l --all
 	ls = l --stat
 	s = status -sb
-	st = stash
+	ts = stash
 	co = checkout
 	c = commit
 	ca = commit --amend --no-edit
@@ -23,6 +23,8 @@
 	shs = show --format=fuller --stat
 	showtool = ! "st() { if [ -z $1 ]; then c='HEAD'; else c=$1; fi; git difftool $c~..$c; }; st" # show what has changed in parent/child using git difftool
 	news = !git fetch && git log --format=full @..@{u}
+	dt = difftool
+	dd = difftool --tool vdwrap --dir-diff
 
 [pretty]
 	line = "%C(auto)%h %<|(60,trunc)%s %C(green)(%cd) %C(blue)<%an>%C(auto)%d"
@@ -37,18 +39,22 @@
 	path = ~/.gitconfig_local
 
 [merge]
-	tool = nvimdiff4
+	tool = vimdiff4
 	conflictstyle = diff3
 
-[mergetool "nvimdiff4"]
-	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[mergetool "vimdiff4"]
+	cmd = vim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 	trustExitCode = true
 
 [diff]
-	tool = nvimdiff2
+	tool = vimdiff2
+        algorithm = patience
 
-[difftool "nvimdiff2"]
-	cmd = nvim -d $LOCAL $REMOTE
+[difftool "vimdiff2"]
+	cmd = vim -d $LOCAL $REMOTE
+
+[difftool "vdwrap"]
+	cmd = vdwrap $LOCAL $REMOTE
 
 [difftool]
 	trustExitCode = true
