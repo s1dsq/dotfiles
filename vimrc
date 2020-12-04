@@ -16,24 +16,26 @@ if exists('g:vscode')
     finish
 endif
 
-colorscheme flattened_light
+set background=light
+colorscheme solarized
 let g:polyglot_disabled = ['go']
 
 packadd! ale
 packadd! vim-polyglot
 packadd! commentary
 packadd! dispatch
-packadd! goyo
 packadd! repeat
 packadd! surround
-packadd! undotree
 packadd! unimpaired
-packadd! vim-dirvish
 packadd! vim-git
-packadd! vim-qf
-packadd! vim-sneak
-packadd! vim-gtfo
 packadd! vim-obsession
+packadd! vim-dirvish
+packadd! vim-gtfo
+packadd! vim-qf
+packadd! vim-cool
+packadd! vim-exchange
+packadd! vim-visual-star-search
+packadd! vim-simple-complete
 
 syntax on
 filetype plugin indent on                                                       
@@ -56,7 +58,9 @@ set autowrite autoread
 set foldmethod=syntax                                                           
 set path=.,,**
 set wildmenu                                                                    
+set wildmode=list:full
 set wildignore+=**/node_modules/**,**/out-tsc/**
+set wildignorecase
 set undofile undodir=~/.vim/undodir                                             " save undos
 set noswapfile nobackup                                                         " remove annoyance
 set shortmess+=I                                                                " don't show startup message
@@ -67,6 +71,8 @@ set wildcharm=<C-z>
 set diffopt+=algorithm:patience
 set grepprg=git\ grep\ --no-index\ --exclude-standard\ --column\ -n
 set grepformat=%f:%l:%c:%m
+set complete-=i
+set complete-=t
 
 " cursor in vim modes
 if !has('nvim')
@@ -82,7 +88,7 @@ endif
 
 " UI
 set laststatus=2
-set statusline=%<\ [%n]\ %f\ %m%r%=\ %y\ L:\ \%l\/\%L\ C:\ \%c\ 
+set statusline=[%n]\ %<\ %f\ %m%r%=\ %y\ L:\ \%l\/\%L\ C:\ \%c\ 
 
 " remaps
 nnoremap Y y$
@@ -128,23 +134,19 @@ nnoremap <Leader>v :e $RC<CR>
 nnoremap <leader>f :e <C-R>='$VD/ftplugin/'.&filetype.'.vim'<CR><CR>
 
 " utils
-nnoremap gb :echo system('git rev-parse --abbrev-ref @ <bar> tr -d "\n"')<CR>
-nnoremap gB :silent !tig blame % +<C-r>=expand(line('.'))<CR><CR>:silent redraw!<CR>
-nnoremap gO :silent !tig<CR>:silent redraw!<CR>
 command! -range GB echo join(systemlist("git -C " . shellescape(expand('%:p:h')) . " blame -L <line1>,<line2> " . expand('%:t')), "\n")
+noremap gb :GB<CR>
 nnoremap <Leader>gh :diffget LOCAL<CR>
 nnoremap <Leader>gl :diffget REMOTE<CR>
 
 " plugins
-" sneak
-let g:sneak#s_next = 1
-let g:sneak#label = 1
-
-" undotree
-nnoremap <F5> :UndotreeToggle<CR>
 
 " vim-qf
 nmap \q <Plug>(qf_qf_toggle)
+nmap \l <Plug>(qf_loc_toggle)
+
+" vim-cool
+let g:CoolTotalMatches = 1
 
 " ale
 highlight link ALEWarningSign Todo
