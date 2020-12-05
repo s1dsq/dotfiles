@@ -10,9 +10,9 @@
     ~/.tmux.conf:
     ~/.vimrc:
     ~/.zshrc:
+    ~/.zshenv:
     ~/.zsh:
-    ~/.gitconfig: git/gitconfig
-    ~/.shell:
+    ~/.gitconfig:
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
