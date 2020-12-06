@@ -1,36 +1,17 @@
-let g:did_install_default_menus = 1  " avoid stupid menu.vim (saves ~100ms)
-
-if exists('g:vscode')
-    nnoremap Y y$
-    vnoremap ; :
-    vnoremap : ;
-    nnoremap ; :
-    nnoremap : ;
-
-    nnoremap <silent> <c-k> <Cmd>call VSCodeCall('editor.action.showHover')<CR>
-    nnoremap <silent> gD <Cmd>call VSCodeCall('editor.action.goToImplementation')<CR>
-    nnoremap <silent> gr <Cmd>call VSCodeCall('references-view.find')<CR>
-    nnoremap <silent> gR <Cmd>call VSCodeCall('references-view.findImplementations')<CR>
-    nnoremap <silent> - <Cmd>call VSCodeCall('workbench.files.action.showActiveFileInExplorer')<CR>
-    nnoremap <silent> UB <Cmd>call VSCodeCall('gitlens.toggleFileBlame')<CR>
-    finish
-endif
+let g:did_install_default_menus = 1  " don't need menus 
+let g:loaded_netrwPlugin = 1 " don't load netrw
 
 set background=light
 colorscheme solarized
 let g:polyglot_disabled = ['go']
 
-packadd! ale
 packadd! vim-polyglot
 packadd! commentary
-packadd! dispatch
 packadd! repeat
 packadd! surround
 packadd! unimpaired
-packadd! vim-git
 packadd! vim-obsession
 packadd! vim-dirvish
-packadd! vim-gtfo
 packadd! vim-qf
 packadd! vim-cool
 packadd! vim-exchange
@@ -39,6 +20,9 @@ packadd! vim-simple-complete
 
 syntax on
 filetype plugin indent on                                                       
+
+runtime macros/matchit.vim
+
 let g:mapleader="\<Space>"
 
 " custom variables
@@ -51,7 +35,7 @@ set hidden
 set mouse=a                                                                     
 set expandtab                                                                   
 set tabstop=8 softtabstop=4 shiftwidth=4                                        
-set clipboard=unnamed
+set clipboard^=unnamed,unnamedplus
 set splitright splitbelow                                                       
 set number relativenumber                                                       
 set autowrite autoread                                                          
@@ -109,21 +93,20 @@ nnoremap g<CR> :ls<CR>:buffer<space>
 nnoremap gs :ls<CR>:sbuffer<space>
 nnoremap g\ :ls<CR>:vert sbuffer<space>
 nnoremap ,f :find *
-nnoremap ,s :sfind *
 nnoremap ,v :vert sfind *
 nnoremap ,F :find <C-R>=fnameescape(expand('%:p:h')).'**/*'<CR>
-nnoremap ,S :sfind <C-R>=fnameescape(expand('%:p:h')).'**/*'<CR>
 nnoremap ,V :vert sfind <C-R>=fnameescape(expand('%:p:h')).'**/*'<CR>
 
 " tweak builtin grep to work a little better
 " (https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3)
 command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args> | redraw!
-nnoremap ,g :Grep
+nnoremap ,G :Grep
 
 " better global (https://gist.github.com/romainl/f7e2e506dc4d7827004e4994f1be2df6)
 " makes result of :global persist in location list
 set errorformat^=%f:%l:%c\ %m
 command! -nargs=1 Global lgetexpr filter(map(getline(1,'$'), {key, val -> expand("%") . ":" . (key + 1) . ":1 " . val }), { idx, val -> val =~ <q-args> })
+nnoremap ,g :Global
 
 " better completion menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -140,6 +123,8 @@ nnoremap <Leader>gh :diffget LOCAL<CR>
 nnoremap <Leader>gl :diffget REMOTE<CR>
 
 " plugins
+" vsc
+let g:vsc_type_complete = 0
 
 " vim-qf
 nmap \q <Plug>(qf_qf_toggle)
@@ -161,7 +146,6 @@ let g:ale_sign_warning = "⚠"
 let g:ale_sign_info = "i"
 
 " use dirvish instead of netrw
-let g:loaded_netrwPlugin = 1
 command! -nargs=? -complete=dir Explore Dirvish <args>
 command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>
 command! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>
