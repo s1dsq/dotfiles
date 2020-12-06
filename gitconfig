@@ -48,10 +48,14 @@
 
 [diff]
 	tool = vimdiff2
+        guitool = diffmerge
         algorithm = patience
 
 [difftool "vimdiff2"]
 	cmd = vim -d $LOCAL $REMOTE
+
+[difftool "diffmerge"]
+	cmd = "/usr/local/bin/diffmerge --nosplash \"$LOCAL\" \"$REMOTE\""
 
 [difftool "vdwrap"]
 	cmd = vdwrap $LOCAL $REMOTE
