@@ -26,11 +26,6 @@ postpath() {
 }
 
 
-# check if program exists on machine
-exists() {
-    (( $+commands[$1] ))
-}
-
 # cd up $1 directories
 up() {
     curdir="$(pwd)"
@@ -65,9 +60,7 @@ autoload -U edit-command-line && zle -N edit-command-line
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=100000
 SAVEHIST=$HISTSIZE
-setopt appendhistory
-setopt incappendhistory
-setopt sharehistory
+setopt APPEND_HISTORY INC_APPEND_HISTORY SHARE_HISTORY HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE
 
 # Vim movements
 bindkey -v
@@ -83,6 +76,8 @@ bindkey "^?" backward-delete-char
 
 # Commonly used directories
 [[ -d $HOME/.config/nvim ]] && hash -d nvim=$HOME/.config/nvim
+[[ -d $HOME/.vim/pack/plugins/opt ]] && hash -d plg=$HOME/.vim/pack/plugins/opt
+[[ -d $HOME/.vim/pack/colors/start ]] && hash -d col=$HOME/.vim/pack/colors/start
 
 # pwd last-executed-command-status shell-privilege
 PROMPT='%B%~%b'$'\n''%(?.%F{green}√.%F{red}?%?)%f %(!.#.>) '
@@ -136,6 +131,10 @@ alias n3="nnn -e -d -C -H"
 alias nf="n -e -d -C -H"
 alias e='vim'
 alias cg='cd $(git rev-parse --show-toplevel)'
+alias cp='cp -vip'
+alias mv='mv -vi'
+alias rm='rm -vi'
+alias g='git'
 
 source ~/.zsh/plugins_after.zsh
 
