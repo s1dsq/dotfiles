@@ -13,8 +13,11 @@ path=($path $HOME/dotfiles/bin/)
 # No duplicates in path
 typeset -U path 
 
+FD_OPTIONS="--hidden --follow --exclude .git --exclude node_modules"
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border=horizontal"
-export FZF_DEFAULT_COMMAND="find ."
+export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard || fd --type f --type l $FD_OPTIONS"
+export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
+export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 _gen_fzf_default_opts() {
   local base03="234"
   local base02="235"
@@ -49,3 +52,12 @@ _gen_fzf_default_opts() {
 
 _gen_fzf_default_opts
 
+ls() {
+    if which gls &>/dev/null; then
+        command gls -hAl --color=auto "$@"
+    elif uname=='Darwin'; then
+        command ls -hAGl "$@"
+    else
+        command ls -hAl --color=auto "$@"
+    fi
+}
