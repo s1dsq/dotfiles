@@ -4,20 +4,25 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 export EDITOR='vim'
-export PAGER='LESS'
-export LESS='--ignore-case --hilite-search --LONG-PROMPT --RAW-CONTROL-CHARS'
+export PAGER='less'
 export MANPAGER=$PAGER
+export LESS='--ignore-case --hilite-search --LONG-PROMPT --RAW-CONTROL-CHARS'
 
 path=($path $HOME/dotfiles/bin/)
 
 # No duplicates in path
 typeset -U path 
 
+fd='fd'
+if [ "$(uname)" = 'Linux' ]; then
+    fd='fdfind'
+fi
+
 FD_OPTIONS="--hidden --follow --exclude .git --exclude node_modules"
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border=horizontal"
-export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard || fd --type f --type l $FD_OPTIONS"
-export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
-export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
+export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard || $fd --type f --type l $FD_OPTIONS"
+export FZF_CTRL_T_COMMAND="$fd $FD_OPTIONS"
+export FZF_ALT_C_COMMAND="$fd --type d $FD_OPTIONS"
 _gen_fzf_default_opts() {
   local base03="234"
   local base02="235"
@@ -53,9 +58,9 @@ _gen_fzf_default_opts() {
 _gen_fzf_default_opts
 
 ls() {
-    if which gls &>/dev/null; then
+    if [ which gls &>/dev/null ]; then
         command gls -hAl --color=auto "$@"
-    elif uname=='Darwin'; then
+    elif [ "$(uname)" = 'Darwin' ]; then
         command ls -hAGl "$@"
     else
         command ls -hAl --color=auto "$@"
