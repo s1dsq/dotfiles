@@ -3,8 +3,8 @@
 	email = singh.siddharth7718@gmail.com
 
 [core]
-	pager = less
 	excludesFile = ~/.gitignore_global
+        pager = less --ignore-case --hilite-search --LONG-PROMPT --RAW-CONTROL-CHARS --quit-if-one-screen
 
 [alias]
 	l = log --oneline --graph --decorate --pretty=line
