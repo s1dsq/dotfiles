@@ -20,36 +20,30 @@
 [submodule "vim/.vim/pack/plugins/start/unimpaired"]
 	path = vim/.vim/pack/plugins/start/unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
-[submodule "vim/.vim/pack/plugins/start/vim-polyglot"]
-	path = vim/.vim/pack/plugins/opt/vim-polyglot
-	url = https://github.com/sheerun/vim-polyglot.git
 [submodule "vim/.vim/pack/plugins/start/repeat"]
 	path = vim/.vim/pack/plugins/start/repeat
 	url = https://github.com/tpope/vim-repeat.git
-[submodule "vim/.vim/pack/plugins/start/vim-dirvish"]
-	path = vim/.vim/pack/plugins/start/vim-dirvish
-	url = https://github.com/justinmk/vim-dirvish.git
-[submodule "vim/.vim/pack/plugins/start/vim-qf"]
-	path = vim/.vim/pack/plugins/opt/vim-qf
-	url = https://github.com/romainl/vim-qf.git
-[submodule "vim/.vim/pack/plugins/opt/vim-obsession"]
-	path = vim/.vim/pack/plugins/opt/vim-obsession
-	url = https://github.com/tpope/vim-obsession.git
 [submodule "vim/.vim/pack/colors/start/flattened"]
 	path = vim/.vim/pack/colors/start/flattened
 	url = https://github.com/romainl/flattened.git
 [submodule "vim/.vim/pack/plugins/opt/vim-visual-star-search"]
 	path = vim/.vim/pack/plugins/start/vim-visual-star-search
 	url = https://github.com/bronson/vim-visual-star-search.git
-[submodule "vim/.vim/pack/plugins/opt/vim-exchange"]
-	path = vim/.vim/pack/plugins/start/vim-exchange
-	url = https://github.com/tommcdo/vim-exchange.git
-[submodule "vim/.vim/pack/plugins/opt/vim-cool"]
-	path = vim/.vim/pack/plugins/start/vim-cool
-	url = https://github.com/romainl/vim-cool.git
 [submodule "vim/.vim/pack/colors/start/vim-colors-solarized"]
 	path = vim/.vim/pack/colors/start/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
-[submodule "vim/.vim/pack/plugins/opt/vim-simple-complete"]
-	path = vim/.vim/pack/plugins/opt/vim-simple-complete
-	url = https://github.com/maxboisvert/vim-simple-complete.git
+[submodule "vim/.vim/pack/plugins/start/vim-fugitive"]
+	path = vim/.vim/pack/plugins/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "vim/.vim/pack/plugins/start/vim-sensible"]
+	path = vim/.vim/pack/plugins/start/vim-sensible
+	url = https://github.com/tpope/vim-sensible.git
+[submodule "vim/.vim/pack/plugins/start/delimitMate"]
+	path = vim/.vim/pack/plugins/start/delimitMate
+	url = https://github.com/Raimondi/delimitMate.git
+[submodule "vim/.vim/pack/plugins/opt/completion-nvim"]
+	path = vim/.vim/pack/plugins/opt/completion-nvim
+	url = https://github.com/nvim-lua/completion-nvim.git
+[submodule "vim/.vim/pack/plugins/opt/nvim-lspconfig"]
+	path = vim/.vim/pack/plugins/opt/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig.git
