@@ -10,6 +10,31 @@ augroup VIMRC
   autocmd VimLeavePre * call sessions#MakeSession()
 augroup END
 
+
+try 
+    packadd minpac
+catch
+    exe '!git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac'
+    packadd minpac
+endtry
+
+call minpac#init()
+call minpac#add('altercation/vim-colors-solarized')
+call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-fugitive')
+call minpac#add('tpope/vim-sensible')
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-repeat')
+call minpac#add('tpope/vim-unimpaired')
+call minpac#add('Raimondi/delimitMate')
+call minpac#add('bronson/vim-visual-star-search')
+call minpac#add('nvim-lua/completion-nvim', {'type': 'opt'})
+call minpac#add('neovim/nvim-lspconfig', {'type': 'opt'})
+
+command! PackUpdate call minpac#update()
+command! PackClean  call minpac#clean()
+command! PackStatus call minpac#status()
+
 colorscheme solarized
 set background=light
 

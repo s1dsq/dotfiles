@@ -11,39 +11,3 @@
 [submodule "zsh/zsh-background-notify"]
 	path = zsh/zsh-background-notify
 	url = https://github.com/t413/zsh-background-notify
-[submodule "vim/.vim/pack/plugins/start/commentary"]
-	path = vim/.vim/pack/plugins/start/commentary
-	url = https://github.com/tpope/vim-commentary.git
-[submodule "vim/.vim/pack/plugins/start/surround"]
-	path = vim/.vim/pack/plugins/start/surround
-	url = https://github.com/tpope/vim-surround.git
-[submodule "vim/.vim/pack/plugins/start/unimpaired"]
-	path = vim/.vim/pack/plugins/start/unimpaired
-	url = https://github.com/tpope/vim-unimpaired.git
-[submodule "vim/.vim/pack/plugins/start/repeat"]
-	path = vim/.vim/pack/plugins/start/repeat
-	url = https://github.com/tpope/vim-repeat.git
-[submodule "vim/.vim/pack/colors/start/flattened"]
-	path = vim/.vim/pack/colors/start/flattened
-	url = https://github.com/romainl/flattened.git
-[submodule "vim/.vim/pack/plugins/opt/vim-visual-star-search"]
-	path = vim/.vim/pack/plugins/start/vim-visual-star-search
-	url = https://github.com/bronson/vim-visual-star-search.git
-[submodule "vim/.vim/pack/colors/start/vim-colors-solarized"]
-	path = vim/.vim/pack/colors/start/vim-colors-solarized
-	url = https://github.com/altercation/vim-colors-solarized.git
-[submodule "vim/.vim/pack/plugins/start/vim-fugitive"]
-	path = vim/.vim/pack/plugins/start/vim-fugitive
-	url = https://github.com/tpope/vim-fugitive.git
-[submodule "vim/.vim/pack/plugins/start/vim-sensible"]
-	path = vim/.vim/pack/plugins/start/vim-sensible
-	url = https://github.com/tpope/vim-sensible.git
-[submodule "vim/.vim/pack/plugins/start/delimitMate"]
-	path = vim/.vim/pack/plugins/start/delimitMate
-	url = https://github.com/Raimondi/delimitMate.git
-[submodule "vim/.vim/pack/plugins/opt/completion-nvim"]
-	path = vim/.vim/pack/plugins/opt/completion-nvim
-	url = https://github.com/nvim-lua/completion-nvim.git
-[submodule "vim/.vim/pack/plugins/opt/nvim-lspconfig"]
-	path = vim/.vim/pack/plugins/opt/nvim-lspconfig
-	url = https://github.com/neovim/nvim-lspconfig.git
