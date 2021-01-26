@@ -1,27 +1,22 @@
-let g:did_install_default_menus = 1  " don't need menus 
-let g:loaded_netrwPlugin = 1 " don't load netrw
+augroup VIMRC
+  autocmd!
+  autocmd BufWritePost .vimrc source $RC
+  autocmd BufWritePost .vimrc_local source $RC
+  autocmd BufRead .vim-vsf :call files#BufferSettings()
+  autocmd ColorScheme * highlight LspDiagnosticsDefaultError ctermfg=DarkRed
+              \ | highlight LspDiagnosticsUnderlineError ctermfg=DarkRed
+              \ | highlight LspDiagnosticsDefaultHint ctermfg=Magenta
+              \ | highlight LspDiagnosticsDefaultWarning ctermfg=DarkMagenta
+  autocmd VimLeavePre * call sessions#MakeSession()
+augroup END
 
-set background=light
 colorscheme solarized
-let g:polyglot_disabled = ['go']
+set background=light
 
-packadd! vim-polyglot
-packadd! commentary
-packadd! repeat
-packadd! surround
-packadd! unimpaired
-packadd! vim-obsession
-packadd! vim-dirvish
-packadd! vim-qf
-packadd! vim-cool
-packadd! vim-exchange
-packadd! vim-visual-star-search
-packadd! vim-simple-complete
-
-syntax on
-filetype plugin indent on                                                       
-
-runtime macros/matchit.vim
+if has('nvim')
+  packadd! nvim-lspconfig
+  packadd! completion-nvim
+endif
 
 let g:mapleader="\<Space>"
 
@@ -29,50 +24,30 @@ let g:mapleader="\<Space>"
 let $RC="~/.vimrc"
 let $VD="~/.vim"
 
-" basics 
-set autoindent                          
-set hidden                                                                      
-set mouse=a                                                                     
-set expandtab                                                                   
-set tabstop=8 softtabstop=4 shiftwidth=4                                        
+" basics
+set hidden
+set mouse=a
+set expandtab tabstop=8 softtabstop=4 shiftwidth=4
 set clipboard^=unnamed,unnamedplus
-set splitright splitbelow                                                       
-set number relativenumber                                                       
-set autowrite autoread                                                          
-set foldmethod=syntax                                                           
+set splitright splitbelow
+set number relativenumber
+set foldmethod=syntax
 set path=.,,**
-set wildmenu                                                                    
 set wildmode=list:full
 set wildignore+=**/node_modules/**,**/out-tsc/**
 set wildignorecase
-set undofile undodir=~/.vim/undodir                                             " save undos
-set noswapfile nobackup                                                         " remove annoyance
+set undofile undodir=~/.vim/undodir
+set noswapfile nobackup
 set shortmess+=I                                                                " don't show startup message
-set showmatch                                                                   
-set hlsearch incsearch                                                          
+set showmatch
+set nohlsearch
 set linebreak
-set wildcharm=<C-z>
 set diffopt+=algorithm:patience
 set grepprg=git\ grep\ --no-index\ --exclude-standard\ --column\ -n
 set grepformat=%f:%l:%c:%m
-set complete-=i
-set complete-=t
-
-" cursor in vim modes
-if !has('nvim')
-  " Insert mode
-  let &t_SI = "\<Esc>[6 q"
-  " Replace mode
-  if has("patch-7.4-687")
-    let &t_SR = "\<Esc>[4 q"
-  endif
-  " Normal mode
-  let &t_EI = "\<Esc>[2 q"
-endif
 
 " UI
-set laststatus=2
-set statusline=[%n]\ %<\ %f\ %m%r%=\ %y\ L:\ \%l\/\%L\ C:\ \%c\ 
+set statusline=\ [%n]\ %<\ %f\ %m%r\ %{FugitiveStatusline()}%=\ %y\ L:\ \%l\/\%L\ C:\ \%c\ 
 
 " remaps
 nnoremap Y y$
@@ -80,82 +55,103 @@ vnoremap ; :
 vnoremap : ;
 nnoremap ; :
 nnoremap : ;
-nnoremap <C-h> <C-w>h                                                           
-nnoremap <C-l> <C-w>l
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
 map <C-U> <C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
 map <C-D> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
 
 " moving around
 nnoremap <BS> :b#<CR>
 nnoremap g<CR> :ls<CR>:buffer<space>
-nnoremap gs :ls<CR>:sbuffer<space>
 nnoremap g\ :ls<CR>:vert sbuffer<space>
 nnoremap ,f :find *
 nnoremap ,v :vert sfind *
 nnoremap ,F :find <C-R>=fnameescape(expand('%:p:h')).'**/*'<CR>
 nnoremap ,V :vert sfind <C-R>=fnameescape(expand('%:p:h')).'**/*'<CR>
 
-" tweak builtin grep to work a little better
-" (https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3)
-command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args> | redraw!
-nnoremap ,G :Grep
-
-" better global (https://gist.github.com/romainl/f7e2e506dc4d7827004e4994f1be2df6)
-" makes result of :global persist in location list
-set errorformat^=%f:%l:%c\ %m
-command! -nargs=1 Global lgetexpr filter(map(getline(1,'$'), {key, val -> expand("%") . ":" . (key + 1) . ":1 " . val }), { idx, val -> val =~ <q-args> })
-nnoremap ,g :Global
-
 " better completion menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <Tab> matchstr(getline('.'), '.\%' . col('.') . 'c') =~ '\k' ? "<C-N>" : "<Tab>"
+inoremap <expr> <S-Tab> matchstr(getline('.'), '.\%' . col('.') . 'c') =~ '\k' ? "<C-P>" : "<S-Tab>"
 
 " commonly accessed files
 nnoremap <Leader>v :e $RC<CR>
 nnoremap <leader>f :e <C-R>='$VD/ftplugin/'.&filetype.'.vim'<CR><CR>
 
-" utils
-command! -range GB echo join(systemlist("git -C " . shellescape(expand('%:p:h')) . " blame -L <line1>,<line2> " . expand('%:t')), "\n")
-noremap gb :GB<CR>
+nnoremap <leader>n :set modifiable! <bar> set modifiable?<CR>
+
+nnoremap <leader>s :call whitespace#StripTrailingWhitespace()<CR>
+nnoremap <silent> <Leader>p :call files#SimpleFiles()<CR>
+
+nnoremap <up> :copen<CR>
+nnoremap <down> :cclose<CR>
+nnoremap <left> :lclose<CR>
+nnoremap <right> : lopen<CR>
+
+if has('nvim')
+    tnoremap <Esc> <C-\><C-N>
+    autocmd TermOpen * startinsert
+
+    tnoremap <A-h> <C-\><C-N><C-w>h
+    tnoremap <A-j> <C-\><C-N><C-w>j
+    tnoremap <A-k> <C-\><C-N><C-w>k
+    tnoremap <A-l> <C-\><C-N><C-w>l
+    inoremap <A-h> <C-\><C-N><C-w>h
+    inoremap <A-j> <C-\><C-N><C-w>j
+    inoremap <A-k> <C-\><C-N><C-w>k
+    inoremap <A-l> <C-\><C-N><C-w>l
+    nnoremap <A-h> <C-w>h
+    nnoremap <A-j> <C-w>j
+    nnoremap <A-k> <C-w>k
+    nnoremap <A-l> <C-w>l
+endif
+
+" plugins
+" git stuff
+noremap Gb :Git blame<CR>
+nnoremap Gg mS:Ggrep!
+nnoremap <leader>G :Git<CR>
 nnoremap <Leader>gh :diffget LOCAL<CR>
 nnoremap <Leader>gl :diffget REMOTE<CR>
 
-" plugins
-" vsc
-let g:vsc_type_complete = 0
+set completeopt=menuone,noinsert,noselect
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
-" vim-qf
-nmap \q <Plug>(qf_qf_toggle)
-nmap \l <Plug>(qf_loc_toggle)
+" lsp
+if has('nvim')
+    nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+    nnoremap <silent> gh     <cmd>lua vim.lsp.buf.hover()<CR>
+    nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+    nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+    lua << EOF
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+        -- Enable underline, use default values
+        underline = {
+            severity_limit = "Warning",
+        },
+        -- Enable virtual text, override spacing to 4
+        virtual_text = {
+          spacing = 4,
+          prefix = '~',
+        },
+        signs = {
+            priority = "Warning",
+        },
+        -- Disable a feature
+        update_in_insert = false,
+      }
+    )
 
-" vim-cool
-let g:CoolTotalMatches = 1
+    require'lspconfig'.tsserver.setup{ on_attach=require'completion'.on_attach }
 
-" ale
-highlight link ALEWarningSign Todo
-highlight link ALEErrorSign WarningMsg
-highlight link ALEVirtualTextWarning Todo
-highlight link ALEVirtualTextInfo Todo
-highlight link ALEVirtualTextError WarningMsg
-highlight ALEError guibg=#330000
-highlight ALEWarning guibg=#333300
-let g:ale_sign_error = "✖"
-let g:ale_sign_warning = "⚠"
-let g:ale_sign_info = "i"
-
-" use dirvish instead of netrw
-command! -nargs=? -complete=dir Explore Dirvish <args>
-command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>
-command! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>
-
-" vimrc specific
-augroup VIMRC
-  autocmd!
-  autocmd BufWritePost .vimrc source $RC
-  autocmd BufWritePost .vimrc_local source $RC
-augroup END
+    local cmd = {"node", "~/.nvm/versions/node/v12.18.3/lib/node_modules/@angular/language-server/index.js", "--stdio", "--tsProbeLocations", "" , "--ngProbeLocations", ""}
+    require'lspconfig'.angularls.setup{ on_attach=require'completion'.on_attach }
+    require'lspconfig'.angularls.setup{
+      cmd = cmd,
+      on_new_config = function(new_config,new_root_dir)
+        new_config.cmd = cmd
+      end,
+    }
+EOF
+endif
 
 " Allow local customizations
 let $LOCALFILE=expand("~/.vimrc_local")
