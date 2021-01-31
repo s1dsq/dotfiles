@@ -30,6 +30,7 @@ call minpac#add('Raimondi/delimitMate')
 call minpac#add('bronson/vim-visual-star-search')
 call minpac#add('nvim-lua/completion-nvim', {'type': 'opt'})
 call minpac#add('neovim/nvim-lspconfig', {'type': 'opt'})
+call minpac#add('ledger/vim-ledger')
 
 command! PackUpdate call minpac#update()
 command! PackClean  call minpac#clean()
