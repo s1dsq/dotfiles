@@ -141,9 +141,7 @@ endif
 " git stuff
 noremap Gb :Git blame<CR>
 nnoremap Gg mS:Ggrep!
-nnoremap <leader>G :Git<CR>
-nnoremap <Leader>gh :diffget LOCAL<CR>
-nnoremap <Leader>gl :diffget REMOTE<CR>
+nnoremap G<space> :Git<CR>
 
 set completeopt=menuone,noinsert,noselect
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
