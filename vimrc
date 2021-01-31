@@ -11,7 +11,7 @@ augroup VIMRC
 augroup END
 
 
-try 
+try
     packadd minpac
 catch
     exe '!git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac'
@@ -71,8 +71,16 @@ set diffopt+=algorithm:patience
 set grepprg=git\ grep\ --no-index\ --exclude-standard\ --column\ -n
 set grepformat=%f:%l:%c:%m
 
-" UI
-set statusline=\ [%n]\ %<\ %f\ %m%r\ %{FugitiveStatusline()}%=\ %y\ L:\ \%l\/\%L\ C:\ \%c\ 
+" statusline
+set statusline=\ [%n]                                                          " buffer #
+set statusline+=\ %<\ %f                                                       " relative path
+set statusline+=\ %m                                                           " modified flag
+set statusline+=%r                                                             " readonly flag
+set statusline+=\ %{FugitiveStatusline()}                                      " git branch
+set statusline+=%=                                                             " seperator
+set statusline+=\ %y                                                           " filetype
+set statusline+=\ L:\ \%l\/\%L                                                 " current/total lines
+set statusline+=\ C:\ \%c\                                                     " column number
 
 " remaps
 nnoremap Y y$
