@@ -13,6 +13,7 @@
     ~/.zshenv:
     ~/.zsh:
     ~/.gitconfig:
+    ~/.password-store/.extensions: ~/dotfiles/bin/.extensions
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]

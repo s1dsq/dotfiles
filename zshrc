@@ -135,6 +135,7 @@ alias cp='cp -vip'
 alias mv='mv -vi'
 alias rm='rm -vi'
 alias g='git'
+alias pass='PASSWORD_STORE_ENABLE_EXTENSIONS=true pass'
 
 source ~/.zsh/plugins_after.zsh
 
