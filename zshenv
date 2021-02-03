@@ -59,10 +59,10 @@ _gen_fzf_default_opts
 
 ls() {
     if [ which gls &>/dev/null ]; then
-        command gls -hAl --color=auto "$@"
+        command gls -hAl --color=auto --group-directories-first "$@"
     elif [ "$(uname)" = 'Darwin' ]; then
         command ls -hAGl "$@"
     else
-        command ls -hAl --color=auto "$@"
+        command ls -hAl --color=auto --group-directories-first "$@"
     fi
 }
