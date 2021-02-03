@@ -10,11 +10,10 @@
 	l = log --oneline --graph --decorate --pretty=line
 	la = l --all
 	ls = l --stat
-	s = status -sb
-	ts = stash
+	st = status -sb
 	co = checkout
-	c = commit
-	ca = commit --amend --no-edit
+	ci = commit
+	cian = commit --amend --no-edit
 	ff = merge --ff
 	noff = merge --no-ff
 	unstage = reset HEAD --
