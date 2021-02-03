@@ -129,13 +129,13 @@ function n
 
 alias n3="nnn -e -d -C -H"
 alias nf="n -e -d -C -H"
-alias e='vim'
+alias e='nvim'
 alias cg='cd $(git rev-parse --show-toplevel)'
 alias cp='cp -vip'
 alias mv='mv -vi'
 alias rm='rm -vi'
 alias g='git'
-alias pass='PASSWORD_STORE_ENABLE_EXTENSIONS=true pass'
+alias p='PASSWORD_STORE_ENABLE_EXTENSIONS=true pass'
 
 source ~/.zsh/plugins_after.zsh
 
