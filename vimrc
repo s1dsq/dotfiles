@@ -32,7 +32,7 @@ catch
 endtry
 
 call minpac#init()
-call minpac#add('altercation/vim-colors-solarized')
+call minpac#add('lifepillar/vim-solarized8')
 call minpac#add('tpope/vim-commentary')
 call minpac#add('tpope/vim-fugitive')
 call minpac#add('tpope/vim-sensible')
@@ -249,8 +249,9 @@ endif
 
 " colorscheme {{{
 
-silent! colorscheme solarized
+set termguicolors
 set background=light
+silent! colorscheme solarized8
 
 augroup Colors
     autocmd!
