@@ -11,7 +11,7 @@ export LESS='--ignore-case --hilite-search --LONG-PROMPT --RAW-CONTROL-CHARS'
 path=($path $HOME/dotfiles/bin/)
 
 # No duplicates in path
-typeset -U path 
+typeset -U path
 
 fd='fd'
 if [ "$(uname)" = 'Linux' ]; then
@@ -58,7 +58,8 @@ _gen_fzf_default_opts() {
 _gen_fzf_default_opts
 
 ls() {
-    if [ which gls &>/dev/null ]; then
+    # (zsh specific) whence: interpret command as expansion if defined as alias
+    if whence gls &>/dev/null; then
         command gls -hAl --color=auto --group-directories-first "$@"
     elif [ "$(uname)" = 'Darwin' ]; then
         command ls -hAGl "$@"
