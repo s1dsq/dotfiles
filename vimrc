@@ -192,8 +192,8 @@ let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 inoremap <silent> ,o <C-x><C-o>
 
 " use tab to cycle completion list
-inoremap <expr> <Tab> matchstr(getline('.'), '.\%' . col('.') . 'c') =~ '\k' ? "<C-N>" : "<Tab>"
-inoremap <expr> <S-Tab> matchstr(getline('.'), '.\%' . col('.') . 'c') =~ '\k' ? "<C-P>" : "<S-Tab>"
+inoremap <expr> <Tab> matchstr(getline('.'), '.\%' . col('.') . 'c') =~ '\k' \|\| pumvisible() ? "<C-N>" : "<Tab>"
+inoremap <expr> <S-Tab> matchstr(getline('.'), '.\%' . col('.') . 'c') =~ '\k' \|\| pumvisible() ? "<C-P>" : "<S-Tab>"
 
 " }}}
 
