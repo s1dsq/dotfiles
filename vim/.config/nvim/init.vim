@@ -66,7 +66,7 @@ set path=.,,**
 set wildmode=list:full
 set wildignore+=**/node_modules/**,**/out-tsc/**
 set wildignorecase
-set undofile undodir=~/.vim/undodir
+set undofile undodir=~/.config/nvim/undodir
 set noswapfile nobackup
 set shortmess+=I                                                                " don't show startup message
 set showmatch
@@ -81,7 +81,7 @@ set grepformat=%f:%l:%c:%m
 " statusline {{{
 
 set statusline=\ [%n]                                                          " buffer number
-set statusline+=\ %<\ %t                                                       " file name
+set statusline+=\ %<\ %f                                                       " file name
 set statusline+=\ %m                                                           " modified flag
 set statusline+=%r                                                             " readonly flag
 set statusline+=\ %y                                                           " filetype
