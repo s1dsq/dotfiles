@@ -45,6 +45,7 @@ call minpac#add('neovim/nvim-lspconfig', {'type': 'opt'})
 call minpac#add('ledger/vim-ledger')
 call minpac#add('tommcdo/vim-exchange')
 call minpac#add('tommcdo/vim-lion')
+call minpac#add('srstevenson/vim-picker')
 
 command! PackUpdate call minpac#update()
 command! PackClean  call minpac#clean()
@@ -105,12 +106,7 @@ map <C-D> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
 " finding files {{{
 
 nnoremap <BS> :b#<CR>
-nnoremap g<CR> :ls<CR>:buffer<space>
-nnoremap g\ :ls<CR>:vert sbuffer<space>
-nnoremap ,f :find *
-nnoremap ,v :vert sfind *
-nnoremap ,F :find <C-R>=fnameescape(expand('%:p:h')).'**/*'<CR>
-nnoremap ,V :vert sfind <C-R>=fnameescape(expand('%:p:h')).'**/*'<CR>
+nnoremap ,e :edit <C-R>=fnameescape(expand('%:p:h')).'/'<CR>
 nnoremap <silent> <Leader>p :call files#SimpleFiles()<CR>
 
 " }}}
