@@ -36,7 +36,7 @@ dirdiff() {
     print 'tabfirst | tabclose'
     } \
     > $vimcmdsfile
-    vim -c "silent source $vimcmdsfile"
+    nvim -c "silent source $vimcmdsfile"
     rm $vimcmdsfile
 }
 
