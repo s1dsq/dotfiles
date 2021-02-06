@@ -69,7 +69,7 @@ set undofile undodir=~/.config/nvim/undodir
 set noswapfile nobackup
 set shortmess+=I                                                                " don't show startup message
 set showmatch
-set nohlsearch
+set inccommand=nosplit
 set linebreak
 set diffopt+=algorithm:patience
 set grepprg=git\ grep\ --no-index\ --exclude-standard\ --column\ -n
