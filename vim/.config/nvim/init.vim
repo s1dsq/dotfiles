@@ -48,6 +48,7 @@ call minpac#add('tommcdo/vim-lion')
 call minpac#add('srstevenson/vim-picker')
 call minpac#add('justinmk/vim-sneak')
 call minpac#add('justinmk/vim-dirvish')
+call minpac#add('bronzehedwick/vim-primary-terminal')
 
 command! PackUpdate call minpac#update()
 command! PackClean  call minpac#clean()
@@ -177,6 +178,10 @@ let g:sneak#s_next = 0
 " Disable netrw
 let g:loaded_netrwPlugin = 1
 
+" primary-terminal
+nmap <silent> <leader>t <Plug>(PrimaryTerminalOpen)
+nmap <silent> <leader>r <Plug>(PrimaryTerminalOpenSplit)
+nmap <silent> <leader>y <Plug>(PrimaryTerminalOpenVsplit)
 
 " }}}
 
