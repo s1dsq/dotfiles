@@ -46,6 +46,7 @@ call minpac#add('ledger/vim-ledger')
 call minpac#add('tommcdo/vim-exchange')
 call minpac#add('tommcdo/vim-lion')
 call minpac#add('srstevenson/vim-picker')
+call minpac#add('justinmk/vim-sneak')
 
 command! PackUpdate call minpac#update()
 command! PackClean  call minpac#clean()
@@ -155,6 +156,7 @@ nnoremap <right> :lopen<CR>
 " }}}
 
 " terminal {{{
+
 tnoremap <C-[> <C-\><C-N>
 autocmd TermOpen * startinsert
 
@@ -162,6 +164,15 @@ tnoremap <A-h> <C-\><C-N><C-w>h
 tnoremap <A-j> <C-\><C-N><C-w>j
 tnoremap <A-k> <C-\><C-N><C-w>k
 tnoremap <A-l> <C-\><C-N><C-w>l
+
+" }}}
+
+" plugin config {{{
+
+" vim-sneak
+let g:sneak#label = 1
+let g:sneak#s_next = 0
+
 " }}}
 
 " completion {{{
