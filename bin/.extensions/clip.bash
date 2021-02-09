@@ -25,19 +25,19 @@ cmd_clip_usage() {
     Usage:
     $PROGRAM clip [options]
         Provide an interactive solution to copy passwords to the
-        clipboard. It will show all pass-names in either fzf or rofi,
+        clipboard. It will show all pass-names in either fzy or rofi,
         waits for the user to select one then copy it to the clipboard.
-        The user can select fzf or rofi by giving either --fzf or --rofi.
+        The user can select fzy or rofi by giving either --fzy or --rofi.
         By default, rofi will be selected and pass-clip will fallback to
-        fzf. If the selected password does not exist, a new one will be
+        fzy. If the selected password does not exist, a new one will be
         generated automatically then copied to the clipboard. Specific
         password length can be given using --length and no symbols can
         be activated with --no-symbols. Note the latter two options must
         be given on the command line, one cannot specify them through
-        fzf or rofi.
+        fzy or rofi.
 
     Options:
-        -f, --fzf        Use fzf to select pass-name.
+        -f, --fzy        Use fzy to select pass-name.
         -r, --rofi       Use rofi to select pass-name.
         -n, --no-symbols Do not use any non-alphanumeric characters.
         -l, --length     Provide a password length.
@@ -46,7 +46,7 @@ _EOF
 }
 
 cmd_clip_short_usage() {
-    echo "Usage: $PROGRAM $COMMAND [--help,-h] [--fzf,-f]|[--rofi,-r] [--no-symbols,-n] [-l <s>,--length <s>]"
+    echo "Usage: $PROGRAM $COMMAND [--help,-h] [--fzy,-f]|[--rofi,-r] [--no-symbols,-n] [-l <s>,--length <s>]"
 }
 
 command_exists() {
@@ -55,15 +55,15 @@ command_exists() {
 
 cmd_clip() {
     # Parse arguments
-    local opts fzf=0 rofi=0
+    local opts fzy=0 rofi=0
     local symbols="" length="25"
     local term=""
-    opts="$($GETOPT -o s:frnl: -l search-term:,fzf,rofi,no-symbols,length: -n "$PROGRAM $COMMAND" -- "$@")"
+    opts="$($GETOPT -o s:frnl: -l search-term:,fzy,rofi,no-symbols,length: -n "$PROGRAM $COMMAND" -- "$@")"
     local err=$?
     eval set -- "$opts"
 
     while true; do case "$1" in
-            -f|--fzf) fzf=1; shift ;;
+            -f|--fzy) fzy=1; shift ;;
             -r|--rofi) rofi=1; shift ;;
             -n|--no-symbols) symbols="--no-symbols"; shift ;;
             -l|--length) length="$2"; shift 2 ;;
@@ -71,9 +71,9 @@ cmd_clip() {
             --) shift; break ;;
     esac done
 
-    if [[ $fzf = 0 && $rofi = 0 ]]; then
-        if command_exists fzf; then
-            fzf=1
+    if [[ $fzy = 0 && $rofi = 0 ]]; then
+        if command_exists fzy; then
+            fzy=1
         elif command_exists rofi; then
             rofi=1
         fi
@@ -81,29 +81,29 @@ cmd_clip() {
 
     [[ $err -ne 0 ]] && die "$(cmd_clip_short_usage)"
 
-    # Figure out if we use fzf or rofi
+    # Figure out if we use fzy or rofi
     local prompt='Copy password into clipboard for 45 seconds '
-    local fzf_cmd="fzf --print-query --prompt=\"$prompt\""
+    local fzy_cmd="fzy --prompt=\"$prompt\""
     local rofi_cmd="rofi -dmenu -i -p \"$prompt\""
 
     if [ -n "$term" ]; then
-      fzf_cmd="$fzf_cmd -q\"$term\""
+      fzy_cmd="$fzy_cmd -q\"$term\""
       rofi_cmd="$rofi_cmd -filter \"$term\""
     fi
-    fzf_cmd="$fzf_cmd | tail -n1"
+    fzy_cmd="$fzy_cmd | tail -n1"
 
-    if [[ $fzf = 1 && $rofi = 1 ]]; then
-        die 'Either --fzf,-f or --rofi,-r must be given, not both'
+    if [[ $fzy = 1 && $rofi = 1 ]]; then
+        die 'Either --fzy,-f or --rofi,-r must be given, not both'
     fi
 
-    if [[ $rofi = 1 || $fzf = 0 ]]; then
+    if [[ $rofi = 1 || $fzy = 0 ]]; then
         command_exists rofi || die "Could not find rofi in \$PATH"
         menu="$rofi_cmd"
-    elif [[ $fzf = 1 || $rofi = 0 ]]; then
-        command_exists fzf || die "Could not find fzf in \$PATH"
-        menu="$fzf_cmd"
+    elif [[ $fzy = 1 || $rofi = 0 ]]; then
+        command_exists fzy || die "Could not find fzy in \$PATH"
+        menu="$fzy_cmd"
     else
-        die "Could not find either fzf or rofi in \$PATH"
+        die "Could not find either fzy or rofi in \$PATH"
     fi
 
     cd "$PASSWORD_STORE_DIR" || exit 1
