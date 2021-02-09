@@ -1,7 +1,7 @@
 # mkdir and cd into it
 mkcd () {
-	mkdir -p "$1"
-	cd "$1" || echo "Can't cd into $1"
+    mkdir -p "$1"
+    cd "$1" || echo "Can't cd into $1"
 }
 
 
@@ -76,8 +76,7 @@ bindkey "^?" backward-delete-char
 
 # Commonly used directories
 [[ -d $HOME/.config/nvim ]] && hash -d nvim=$HOME/.config/nvim
-[[ -d $HOME/.vim/pack/plugins/opt ]] && hash -d plg=$HOME/.vim/pack/plugins/opt
-[[ -d $HOME/.vim/pack/colors/start ]] && hash -d col=$HOME/.vim/pack/colors/start
+[[ -d $HOME/.config/nvim/pack/minpac ]] && hash -d plg=$HOME/.config/nvim/pack/minpac
 
 # pwd last-executed-command-status shell-privilege
 PROMPT='%B%~%b'$'\n''%(?.%F{green}√.%F{red}?%?)%f %(!.#.>) '
@@ -136,6 +135,7 @@ alias mv='mv -vi'
 alias rm='rm -vi'
 alias g='git'
 alias p='PASSWORD_STORE_ENABLE_EXTENSIONS=true pass'
+alias tis='tig status'
 
 source ~/.zsh/plugins_after.zsh
 
