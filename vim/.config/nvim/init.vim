@@ -47,6 +47,7 @@ call minpac#add('tommcdo/vim-exchange')
 call minpac#add('tommcdo/vim-lion')
 call minpac#add('srstevenson/vim-picker')
 call minpac#add('justinmk/vim-sneak')
+call minpac#add('justinmk/vim-dirvish')
 
 command! PackUpdate call minpac#update()
 command! PackClean  call minpac#clean()
@@ -172,6 +173,10 @@ tnoremap <A-l> <C-\><C-N><C-w>l
 " vim-sneak
 let g:sneak#label = 1
 let g:sneak#s_next = 0
+
+" Disable netrw
+let g:loaded_netrwPlugin = 1
+
 
 " }}}
 
