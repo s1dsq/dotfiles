@@ -72,11 +72,13 @@ set undofile undodir=~/.config/nvim/undodir
 set noswapfile nobackup
 set shortmess+=I                                                                " don't show startup message
 set showmatch
+set nohlsearch
 set inccommand=nosplit
 set linebreak
 set diffopt+=algorithm:patience
 set grepprg=git\ grep\ --no-index\ --exclude-standard\ --column\ -n
 set grepformat=%f:%l:%c:%m
+set lazyredraw
 
 " }}}
 
@@ -177,6 +179,8 @@ let g:sneak#s_next = 0
 
 " Disable netrw
 let g:loaded_netrwPlugin = 1
+nmap gx <Plug>NetrwBrowseX
+nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())<CR>
 
 " primary-terminal
 nmap <silent> <leader>t <Plug>(PrimaryTerminalOpen)
@@ -202,6 +206,7 @@ inoremap <expr> <S-Tab> matchstr(getline('.'), '.\%' . col('.') . 'c') =~ '\k' \
 " colorscheme {{{
 
 set termguicolors
+let g:solarized_diffmode = "high"
 set background=light
 silent! colorscheme solarized8
 
