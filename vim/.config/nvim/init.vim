@@ -49,6 +49,7 @@ call minpac#add('srstevenson/vim-picker')
 call minpac#add('justinmk/vim-sneak')
 call minpac#add('justinmk/vim-dirvish')
 call minpac#add('bronzehedwick/vim-primary-terminal')
+call minpac#add('lifepillar/vim-mucomplete')
 
 command! PackUpdate call minpac#update()
 command! PackClean  call minpac#clean()
@@ -137,9 +138,7 @@ nnoremap <A-l> <C-w>l
 
 " edit filetype settings
 nnoremap <leader>f :e <C-R>='$VD/after/ftplugin/'.&filetype.'.vim'<CR><CR>
-
 nnoremap <leader>n :setlocal modifiable! <bar> setlocal modifiable?<CR>
-
 nnoremap <leader>s :call whitespace#StripTrailingWhitespace()<CR>
 
 " }}}
@@ -192,14 +191,10 @@ nmap <silent> <leader>y <Plug>(PrimaryTerminalOpenVsplit)
 " completion {{{
 
 set completeopt=menuone,noinsert,noselect
-let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+let g:mucomplete#enable_auto_at_startup = 1
 
 " omni-completion
 inoremap <silent> ,o <C-x><C-o>
-
-" use tab to cycle completion list
-inoremap <expr> <Tab> matchstr(getline('.'), '.\%' . col('.') . 'c') =~ '\k' \|\| pumvisible() ? "<C-N>" : "<Tab>"
-inoremap <expr> <S-Tab> matchstr(getline('.'), '.\%' . col('.') . 'c') =~ '\k' \|\| pumvisible() ? "<C-P>" : "<S-Tab>"
 
 " }}}
 
