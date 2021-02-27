@@ -76,9 +76,13 @@ set nohlsearch
 set inccommand=nosplit
 set linebreak
 set diffopt+=algorithm:patience
-set grepprg=git\ grep\ --no-index\ --exclude-standard\ --column\ -n
-set grepformat=%f:%l:%c:%m
 set lazyredraw
+
+" use rg for improved grepping
+if executable('rg')
+    set grepprg=rg\ --no-heading\ --vimgrep
+    set grepformat=%f:%l:%c:%m
+endif
 
 " }}}
 
@@ -108,11 +112,22 @@ map <C-D> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
 
 " }}}
 
-" finding files {{{
+" files {{{
 
-nnoremap <BS> :b#<CR>
+nnoremap <BS> :buffer#<CR>
+nnoremap ,m :!mkdir -p %:h<CR>
 nnoremap ,e :edit <C-R>=fnameescape(expand('%:p:h')).'/'<CR>
-nnoremap <silent> <Leader>p :call files#SimpleFiles()<CR>
+
+" note taking
+" scratch notes to jot down stuff
+" abbrev month name-date-year
+nnoremap <silent> <leader>s :exec 'edit ~/scratch/' . strftime("%b-%d-%Y") . '.scratch'<CR>
+nnoremap ,s :PickerEdit ~/scratch<CR>
+
+" notes
+nnoremap <leader>n :edit ~/notes/
+nnoremap ,n :PickerEdit ~/notes<CR>
+
 
 " }}}
 
@@ -137,8 +152,7 @@ nnoremap <A-l> <C-w>l
 
 " edit filetype settings
 nnoremap <leader>f :e <C-R>='$VD/after/ftplugin/'.&filetype.'.vim'<CR><CR>
-nnoremap <leader>n :setlocal modifiable! <bar> setlocal modifiable?<CR>
-nnoremap <leader>s :call whitespace#StripTrailingWhitespace()<CR>
+nnoremap <leader>w :call whitespace#StripTrailingWhitespace()<CR>
 
 " }}}
 

@@ -53,6 +53,14 @@ grep() {
     "$@"
 }
 
+noe() {
+    $EDITOR $HOME/notes/"$@".md
+}
+
+nof() {
+    rg --files --follow ~/notes | fzy | xargs $EDITOR
+}
+
 source ~/.zsh/plugins_before.zsh
 
 # Initialize completion
@@ -137,7 +145,7 @@ function n
 
 alias n3="nnn -e -d -C -H"
 alias nf="n -e -d -C -H"
-alias e='nvim'
+alias e='$EDITOR'
 alias cg='cd $(git rev-parse --show-toplevel)'
 alias cp='cp -vip'
 alias mv='mv -vi'
@@ -145,6 +153,7 @@ alias rm='rm -vi'
 alias g='git'
 alias p='PASSWORD_STORE_ENABLE_EXTENSIONS=true pass'
 alias tis='tig status'
+alias hl='hledger'
 
 source ~/.zsh/plugins_after.zsh
 
