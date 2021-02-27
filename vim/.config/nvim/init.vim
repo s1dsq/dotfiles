@@ -13,7 +13,6 @@ augroup VIMRC
   autocmd!
   autocmd BufWritePost init.vim source $MYVIMRC
   autocmd BufWritePost init_local.vim source $MYVIMRC
-  autocmd BufRead .vim-vsf :call files#BufferSettings()
   autocmd VimLeavePre * call sessions#MakeSession()
   autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   autocmd WinLeave * setlocal nocursorline
