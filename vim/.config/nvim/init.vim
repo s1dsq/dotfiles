@@ -216,7 +216,7 @@ inoremap <silent> ,o <C-x><C-o>
 set termguicolors
 let g:solarized_diffmode = "high"
 set background=light
-silent! colorscheme solarized8
+silent! colorscheme selenized
 
 augroup Colors
     autocmd!
