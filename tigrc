@@ -13,4 +13,4 @@ bind main G move-last-line
 color author blue default
 color cursor white black
 color date green default
-color title-focus yellow white
+color title-focus yellow black
