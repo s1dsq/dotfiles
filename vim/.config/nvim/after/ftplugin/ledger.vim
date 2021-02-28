@@ -5,3 +5,5 @@ noremap <buffer> { ?^\d<CR>
 noremap <buffer> } /^\d<CR>
 
 nnoremap <buffer> m<CR> :silent make <bar> redraw! <bar> cwindow<CR>
+
+set foldmethod=syntax
