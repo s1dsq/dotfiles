@@ -1,6 +1,6 @@
 source $HOME/.zsh/pass-completion/pass-zsh-completion.plugin.zsh
 
-source /home/siddharth/.zsh/taskwarrior-completion/taskwarrior.plugin.zsh
+source $HOME/.zsh/taskwarrior-completion/taskwarrior.plugin.zsh
 
 source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
