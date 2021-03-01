@@ -61,7 +61,7 @@ packadd! nvim-lspconfig
 " settings {{{
 
 set mouse=a
-set expandtab tabstop=8 softtabstop=4 shiftwidth=4
+set expandtab softtabstop=2 shiftwidth=2
 set clipboard^=unnamed,unnamedplus
 set number relativenumber
 set path=.,,**
