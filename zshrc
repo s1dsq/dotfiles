@@ -1,81 +1,12 @@
-# mkdir and cd into it
-mkcd () {
-    mkdir -p "$1"
-    cd "$1" || echo "Can't cd into $1"
-}
-
-
-# Prepend to path
-prepath() {
-    for dir in "$@"; do 
-        # absolute path 
-        dir=${dir:A}
-        [ ! -d "$dir" ] && return
-        path=("$dir" "${path[@]}")
-    done
-}
-
-
-# Append to path
-postpath() {
-    for dir in "$@"; do
-        dir=${dir:A}
-        [ ! -d "$dir" ] && return
-        path=("${path[@]}" "$dir")
-    done
-}
-
-
-# cd up $1 directories
-up() {
-    curdir="$(pwd)"
-    if [[ "$1" == ""  ]]; then 
-        curdir="$(dirname "$curdir")"
-    else
-        for ((i=0; i<$1; i++)); do
-            local pardir="$(dirname "$curdir")"
-            if [[ "$pardir" == "$curdir" ]]; then
-                break
-            else
-                curdir="$pardir"
-            fi
-        done
-    fi
-    cd "$curdir" || echo "Can't cd into $1"
-}
-
-# sane defaults for grep
-grep() {
-    command grep -EIn \
-        --exclude-dir=.git \
-        --exclude-dir=node_modules \
-        --exclude-dir=dist \
-        --color=auto \
-        "$@"
-    }
-
-# edit note in EDITOR
-noe() {
-    $EDITOR $HOME/notes/"$@".md
-}
-
-# fuzzy select note to edit in EDITOR
-# using ripgrep
-nof() {
-    rg --files --follow $HOME/notes | fzy | xargs $EDITOR
-}
-
-# quickly open nvim with fugitive status
-vg() {
-    nvim +Git "+wincmd o"
-}
-
 source ~/.zsh/plugins_before.zsh
 
 # Initialize completion
 autoload -Uz compinit && compinit -i
 zstyle ':completion:*' menu select=4
 zmodload zsh/complist
+
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin
 
 # enable interactive comments
 setopt interactivecomments
@@ -100,69 +31,18 @@ bindkey -a '^R' redo
 bindkey -a '^V' edit-command-line
 bindkey "^?" backward-delete-char
 
-# Commonly used directories
-[[ -d $HOME/.config/nvim ]] && hash -d nvim=$HOME/.config/nvim
-[[ -d $HOME/.config/nvim/pack/minpac ]] && hash -d plg=$HOME/.config/nvim/pack/minpac
+source ~/.zsh/prompt.zsh
 
-# pwd last-executed-command-status shell-privilege
-PROMPT='%B%~%b'$'\n''%(?.%F{green}√.%F{red}?%?)%f %(!.#.>) '
+source ~/.zsh/functions.zsh
 
-# (git banch)
-autoload -Uz vcs_info
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
-setopt prompt_subst
-RPROMPT="\$vcs_info_msg_0_"
-zstyle ':vcs_info:git:*' formats '%F{cyan}(%b)%f'
-zstyle ':vcs_info:*' enable git
+source ~/.zsh/alias.zsh
 
-# --- CLI programs ---
-# fzf completion
-[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+source ~/.zsh/nnn.zsh
+
+source ~/.zsh/fzf.zsh
 
 # tldr completion
 [[ -f ~/.tldr.complete ]] && source ~/.tldr.complete
-
-# nnn file manager
-function n
-{
-    # Block nesting of nnn in subshells
-    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
-        echo "nnn is already running"
-        return
-    fi
-
-    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
-    # To cd on quit only on ^G, remove the "export" as in:
-    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-    # NOTE: NNN_TMPFILE is fixed, should not be modified
-    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-
-    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-    # stty start undef
-    # stty stop undef
-    # stty lwrap undef
-    # stty lnext undef
-
-    nnn "$@"
-
-    if [ -f "$NNN_TMPFILE" ]; then
-        . "$NNN_TMPFILE"
-        rm -f "$NNN_TMPFILE" > /dev/null
-    fi
-}
-
-alias n3="nnn -e -d -C -H"
-alias nf="n -e -d -C -H"
-alias e='$EDITOR'
-alias cg='cd $(git rev-parse --show-toplevel)'
-alias cp='cp -vip'
-alias mv='mv -vi'
-alias rm='rm -vi'
-alias g='git'
-alias p='PASSWORD_STORE_ENABLE_EXTENSIONS=true pass'
-alias tis='tig status'
-alias hl='hledger'
 
 source ~/.zsh/plugins_after.zsh
 
