@@ -40,7 +40,7 @@ call minpac#add('tpope/vim-unimpaired')
 call minpac#add('tpope/vim-git')
 call minpac#add('Raimondi/delimitMate')
 call minpac#add('bronson/vim-visual-star-search')
-call minpac#add('neovim/nvim-lspconfig', {'type': 'opt'})
+call minpac#add('neovim/nvim-lspconfig')
 call minpac#add('ledger/vim-ledger')
 call minpac#add('tommcdo/vim-exchange')
 call minpac#add('tommcdo/vim-lion')
@@ -54,7 +54,9 @@ command! PackUpdate call minpac#update()
 command! PackClean  call minpac#clean()
 command! PackStatus call minpac#status()
 
-packadd! nvim-lspconfig
+if has('nvim-0.5')
+  lua require('lspsetup')
+endif
 
 " }}}
 
