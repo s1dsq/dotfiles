@@ -46,9 +46,9 @@ call minpac#add('tommcdo/vim-exchange')
 call minpac#add('tommcdo/vim-lion')
 call minpac#add('srstevenson/vim-picker')
 call minpac#add('justinmk/vim-sneak')
-call minpac#add('justinmk/vim-dirvish')
 call minpac#add('bronzehedwick/vim-primary-terminal')
 call minpac#add('lifepillar/vim-mucomplete')
+call minpac#add('mcchrish/nnn.vim')
 
 command! PackUpdate call minpac#update()
 command! PackClean  call minpac#clean()
@@ -119,6 +119,7 @@ map <C-D> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
 nnoremap <BS> :buffer#<CR>
 nnoremap ,m :!mkdir -p %:h<CR>
 nnoremap ,e :edit <C-R>=fnameescape(expand('%:p:h')).'/'<CR>
+nnoremap <leader>d :PickerEdit ~/dotfiles<CR>
 
 " note taking
 " scratch notes to jot down stuff
@@ -200,6 +201,12 @@ nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw
 nmap <silent> <leader>t <Plug>(PrimaryTerminalOpen)
 nmap <silent> <leader>r <Plug>(PrimaryTerminalOpenSplit)
 nmap <silent> <leader>y <Plug>(PrimaryTerminalOpenVsplit)
+
+" nnn.vim
+let g:nnn#set_default_mappings = 0
+let g:nnn#command = 'nnn -edCH'
+let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
+nnoremap <silent> - :NnnPicker %:p:h<CR>
 
 " }}}
 
