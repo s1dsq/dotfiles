@@ -2,6 +2,7 @@
 
 let $VD=split(&runtimepath, ',')[0]
 let g:mapleader="\<Space>"
+let g:notes_dir="~/Nextcloud/Notes/"
 
 " }}}
 
@@ -128,9 +129,8 @@ nnoremap <silent> <leader>s :exec 'edit ~/scratch/' . strftime("%b-%d-%Y") . '.s
 nnoremap ,s :PickerEdit ~/scratch<CR>
 
 " notes
-nnoremap <leader>n :edit ~/notes/
-nnoremap ,n :PickerEdit ~/notes<CR>
-
+nnoremap <leader>n :edit <C-R>=expand(g:notes_dir)<CR>
+nnoremap ,n :PickerEdit <C-R>=expand(g:notes_dir)<CR><CR>
 
 " }}}
 

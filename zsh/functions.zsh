@@ -54,6 +54,7 @@ grep() {
         "$@"
     }
 
+# TODO: make this function more general
 ls() {
     # (zsh specific) whence: interpret command as expansion if defined as alias
     if whence gls &>/dev/null; then
@@ -67,13 +68,13 @@ ls() {
 
 # edit note in EDITOR
 noe() {
-    $EDITOR $HOME/notes/"$@".md
+    $EDITOR $HOME/Nextcloud/Notes/"$@".md
 }
 
 # fuzzy select note to edit in EDITOR
 # using ripgrep
 nof() {
-    rg --files --follow $HOME/notes | fzy | xargs $EDITOR
+    rg --files --follow $HOME/Nextcloud/Notes | fzy | xargs $EDITOR
 }
 
 # quickly open nvim with fugitive status
