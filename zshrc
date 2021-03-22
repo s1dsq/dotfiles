@@ -41,6 +41,8 @@ source ~/.zsh/nnn.zsh
 
 source ~/.zsh/fzf.zsh
 
+. $HOME/dotfiles/bin/z
+
 # tldr completion
 [[ -f ~/.tldr.complete ]] && source ~/.tldr.complete
 
