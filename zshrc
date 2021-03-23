@@ -32,6 +32,10 @@ zle -N down-line-or-beginning-search
 autoload -Uz edit-command-line
 zle -N edit-command-line
 
+# run-help opens man pages for commands
+unalias run-help
+autoload -Uz run-help run-help-git
+
 # Vi mode
 bindkey -v
 bindkey -M vicmd 'u' undo
@@ -39,6 +43,7 @@ bindkey -M vicmd '^R' redo
 bindkey -M vicmd '^V' edit-command-line
 bindkey -M viins '^p' up-line-or-history
 bindkey -M viins '^n' down-line-or-history
+bindkey '^k'  run-help
 bindkey "^?" backward-delete-char
 bindkey '^[[A'  up-line-or-beginning-search    # Arrow up
 bindkey '^[OA'  up-line-or-beginning-search
