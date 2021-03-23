@@ -192,8 +192,7 @@ tnoremap <A-l> <C-\><C-N><C-w>l
 let g:sneak#label = 1
 let g:sneak#s_next = 0
 
-" Disable netrw
-let g:loaded_netrwPlugin = 1
+" netrw browser mapping
 nmap gx <Plug>NetrwBrowseX
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())<CR>
 
@@ -201,12 +200,6 @@ nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw
 nmap <silent> <leader>t <Plug>(PrimaryTerminalOpen)
 nmap <silent> <leader>r <Plug>(PrimaryTerminalOpenSplit)
 nmap <silent> <leader>y <Plug>(PrimaryTerminalOpenVsplit)
-
-" nnn.vim
-let g:nnn#set_default_mappings = 0
-let g:nnn#command = 'nnn -edCH'
-let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
-nnoremap <silent> - :NnnPicker %:p:h<CR>
 
 " }}}
 
