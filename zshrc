@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 source ~/.zsh/plugins_before.zsh
 
 # Initialize completion
@@ -31,8 +38,6 @@ bindkey -a '^R' redo
 bindkey -a '^V' edit-command-line
 bindkey "^?" backward-delete-char
 
-source ~/.zsh/prompt.zsh
-
 source ~/.zsh/functions.zsh
 
 source ~/.zsh/alias.zsh
@@ -52,3 +57,7 @@ if [ -f ~/.zshrc_local_after ]; then
     source ~/.zshrc_local_after
 fi
 
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
