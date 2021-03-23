@@ -18,25 +18,32 @@ kitty + complete setup zsh | source /dev/stdin
 # enable interactive comments
 setopt interactivecomments
 
-# Initialize editing command line
-autoload -U edit-command-line && zle -N edit-command-line
-
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=100000
 SAVEHIST=$HISTSIZE
 setopt APPEND_HISTORY INC_APPEND_HISTORY SHARE_HISTORY HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE
 
-# Vim movements
+# Load functions in $fpath
+# ls + arrow keys shows commands beginning with ls
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+autoload -Uz edit-command-line
+zle -N edit-command-line
+
+# Vi mode
 bindkey -v
-
-bindkey -a 'gg' beginning-of-buffer-or-history
-bindkey -a 'G' end-of-buffer-or-history
-
-bindkey -a 'u' undo
-bindkey -a '^R' redo
-
-bindkey -a '^V' edit-command-line
+bindkey -M vicmd 'u' undo
+bindkey -M vicmd '^R' redo
+bindkey -M vicmd '^V' edit-command-line
+bindkey -M viins '^p' up-line-or-history
+bindkey -M viins '^n' down-line-or-history
 bindkey "^?" backward-delete-char
+bindkey '^[[A'  up-line-or-beginning-search    # Arrow up
+bindkey '^[OA'  up-line-or-beginning-search
+bindkey '^[[B'  down-line-or-beginning-search  # Arrow down
+bindkey '^[OB'  down-line-or-beginning-search
 
 source ~/.zsh/functions.zsh
 
