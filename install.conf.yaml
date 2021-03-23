@@ -5,7 +5,6 @@
 
 - link:
     ~/.config/nvim: vim/.config/nvim
-    ~/.vim: vim/.vim/
     ~/.tigrc:
     ~/.tmux.conf:
     ~/.vimrc:
