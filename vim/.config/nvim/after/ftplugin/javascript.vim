@@ -7,3 +7,4 @@ setlocal suffixesadd+=.ts,.tsx,.json,.js
   \ call winrestview(b:winview)
 
 nnoremap <buffer> m<CR> :silent Prettier
+
