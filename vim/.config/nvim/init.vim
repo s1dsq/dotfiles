@@ -31,7 +31,6 @@ catch
 endtry
 
 call minpac#init()
-call minpac#add('lifepillar/vim-solarized8')
 call minpac#add('tpope/vim-commentary')
 call minpac#add('tpope/vim-fugitive')
 call minpac#add('tpope/vim-sensible')
@@ -44,12 +43,12 @@ call minpac#add('bronson/vim-visual-star-search')
 call minpac#add('neovim/nvim-lspconfig')
 call minpac#add('ledger/vim-ledger')
 call minpac#add('tommcdo/vim-exchange')
-call minpac#add('tommcdo/vim-lion')
 call minpac#add('srstevenson/vim-picker')
 call minpac#add('justinmk/vim-sneak')
 call minpac#add('bronzehedwick/vim-primary-terminal')
 call minpac#add('lifepillar/vim-mucomplete')
 call minpac#add('mcchrish/nnn.vim')
+call minpac#add('cespare/vim-toml')
 
 command! PackUpdate call minpac#update()
 command! PackClean  call minpac#clean()
@@ -216,7 +215,6 @@ inoremap <silent> ,o <C-x><C-o>
 " colorscheme {{{
 
 set termguicolors
-let g:solarized_diffmode = "high"
 set background=light
 silent! colorscheme selenized
 
