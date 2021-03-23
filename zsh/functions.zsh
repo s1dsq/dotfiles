@@ -46,12 +46,15 @@ up() {
 
 # sane defaults for grep
 grep() {
-    command grep -EIn \
-        --exclude-dir=.git \
-        --exclude-dir=node_modules \
-        --exclude-dir=dist \
-        --color=auto \
-        "$@"
+  command grep \
+    --extended-regexp \
+    --binary-files=without-match \
+    --line-number \
+    --exclude-dir=.git \
+    --exclude-dir=node_modules \
+    --exclude-dir=dist \
+    --color=auto \
+    "$@"
     }
 
 # TODO: make this function more general
