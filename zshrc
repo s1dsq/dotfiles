@@ -25,16 +25,13 @@ setopt APPEND_HISTORY INC_APPEND_HISTORY SHARE_HISTORY HIST_IGNORE_DUPS HIST_IGN
 
 # Load functions in $fpath
 # ls + arrow keys shows commands beginning with ls
-autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-
-autoload -Uz edit-command-line
-zle -N edit-command-line
+autoload -Uz up-line-or-beginning-search && zle -N up-line-or-beginning-search
+autoload -Uz down-line-or-beginning-search && zle -N down-line-or-beginning-search
+autoload -Uz edit-command-line && zle -N edit-command-line
 
 # run-help opens man pages for commands
-unalias run-help
 autoload -Uz run-help run-help-git
+alias run-help >/dev/null && unalias run-help
 
 # Vi mode
 bindkey -v
