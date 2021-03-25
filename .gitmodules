@@ -8,9 +8,3 @@
 [submodule "zsh/zsh-autosuggestions"]
 	path = zsh/.zsh/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule "zsh/zsh-background-notify"]
-	path = zsh/.zsh/zsh-background-notify
-	url = https://github.com/t413/zsh-background-notify
-[submodule "zsh/pass-completion"]
-	path = zsh/.zsh/pass-completion
-	url = https://github.com/ninrod/pass-zsh-completion.git

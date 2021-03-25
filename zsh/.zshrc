@@ -6,6 +6,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 source ~/.zsh/plugins_before.zsh
+# Enable external completions
+fpath=($fpath ~/.zsh/completions)
 
 # Initialize completion
 autoload -Uz compinit && compinit -i
