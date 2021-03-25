@@ -4,14 +4,14 @@
       relink: true
 
 - link:
-    ~/.config/nvim: vim/.config/nvim
-    ~/.tigrc:
-    ~/.tmux.conf:
-    ~/.vimrc:
-    ~/.zshrc:
-    ~/.zshenv:
-    ~/.zsh:
-    ~/.gitconfig:
+    ~/.config/nvim: neovim/.config/nvim
+    ~/.tigrc: tig/.tigrc
+    ~/.tmux.conf: tmux/.tmux.conf
+    ~/.vimrc: vim/.vimrc
+    ~/.zshrc: zsh/.zshrc
+    ~/.zshenv: zsh/.zshenv
+    ~/.zsh: zsh/.zsh
+    ~/.gitconfig: git/.gitconfig
     ~/.password-store/.extensions: ~/dotfiles/bin/.extensions
 
 - shell:

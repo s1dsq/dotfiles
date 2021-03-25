@@ -216,7 +216,7 @@ inoremap <silent> ,o <C-x><C-o>
 
 set termguicolors
 set background=light
-silent! colorscheme selenized
+silent! colorscheme selenized_bw
 
 augroup Colors
     autocmd!
