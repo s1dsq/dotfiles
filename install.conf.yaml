@@ -5,7 +5,6 @@
 
 - link:
     ~/.config/nvim: neovim/.config/nvim
-    ~/.tigrc: tig/.tigrc
     ~/.tmux.conf: tmux/.tmux.conf
     ~/.vimrc: vim/.vimrc
     ~/.zshrc: zsh/.zshrc
