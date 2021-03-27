@@ -22,7 +22,6 @@
     showtool = ! "st() { if [ -z $1 ]; then c='HEAD'; else c=$1; fi; git difftool $c~..$c; }; st" # show what has changed in parent/child using git difftool
     news = !git fetch && git log --format=full @..@{u}
     dt = difftool
-    dd = difftool --tool vdwrap --dir-diff
     plrb = pull --rebase
 
 [pretty]
@@ -51,9 +50,6 @@
 
 [difftool "nvimdiff2"]
     cmd = nvim -d $LOCAL $REMOTE
-
-[difftool "vdwrap"]
-    cmd = vdwrap $LOCAL $REMOTE
 
 [difftool]
     trustExitCode = true
