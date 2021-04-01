@@ -3,9 +3,6 @@ let $VD=split(&runtimepath, ',')[0]
 filetype plugin indent on
 syntax on
 
-colorscheme default
-set background=light
-
 " open quickfix window automatically when it changes
 augroup VIMRC
     autocmd!
