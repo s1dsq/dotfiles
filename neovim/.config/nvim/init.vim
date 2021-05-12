@@ -13,7 +13,7 @@ nnoremap <Leader>v :e $MYVIMRC<CR>
 augroup VIMRC
   autocmd!
   autocmd BufWritePost init.vim source $MYVIMRC
-  autocmd BufWritePost init_local.vim source $MYVIMRC
+  autocmd BufWritePost .init_local.vim source $MYVIMRC
   autocmd VimLeavePre * call sessions#MakeSession()
   autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   autocmd WinLeave * setlocal nocursorline
@@ -35,12 +35,14 @@ call minpac#add('Raimondi/delimitMate')
 call minpac#add('bronson/vim-visual-star-search')
 call minpac#add('bronzehedwick/vim-primary-terminal')
 call minpac#add('cespare/vim-toml')
+call minpac#add('hrsh7th/nvim-compe')
+call minpac#add('justinmk/vim-dirvish')
 call minpac#add('justinmk/vim-sneak')
 call minpac#add('ledger/vim-ledger')
-call minpac#add('lifepillar/vim-mucomplete')
-call minpac#add('mcchrish/nnn.vim')
 call minpac#add('neovim/nvim-lspconfig')
-call minpac#add('srstevenson/vim-picker')
+call minpac#add('nvim-lua/plenary.nvim')
+call minpac#add('nvim-lua/popup.nvim')
+call minpac#add('nvim-telescope/telescope.nvim')
 call minpac#add('tommcdo/vim-exchange')
 call minpac#add('tpope/vim-commentary')
 call minpac#add('tpope/vim-fugitive')
@@ -56,6 +58,8 @@ command! PackStatus call minpac#status()
 
 if has('nvim-0.5')
   lua require('lspsetup')
+  lua require('compesetup')
+  lua require('telescopesetup')
 endif
 
 " }}}
@@ -67,7 +71,6 @@ set expandtab softtabstop=2 shiftwidth=2
 set clipboard^=unnamed,unnamedplus
 set number relativenumber
 set path=.,,**
-set wildmode=list:full
 set wildignore+=**/node_modules/**,**/out-tsc/**
 set wildignorecase
 set undofile undodir=~/.config/nvim/undodir
@@ -119,21 +122,24 @@ map <C-D> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
 nnoremap <BS> :buffer#<CR>
 nnoremap ,m :!mkdir -p %:h<CR>
 nnoremap ,e :edit <C-R>=fnameescape(expand('%:p:h')).'/'<CR>
-nnoremap <leader>d :PickerEdit ~/dotfiles<CR>
+
+" dotfiles repo
+nnoremap ,d :lua require('telescopesetup').search_dotfiles()<CR>
 
 " note taking
+
 " scratch notes to jot down stuff
 " abbrev month name-date-year
 nnoremap <silent> <leader>s :exec 'edit ~/scratch/' . strftime("%b-%d-%Y") . '.scratch'<CR>
-nnoremap ,s :PickerEdit ~/scratch<CR>
+nnoremap ,s :lua require('telescopesetup').search_scratch()<CR>
 
 " notes
 nnoremap <leader>n :edit <C-R>=expand(g:notes_dir)<CR>
-nnoremap ,n :PickerEdit <C-R>=expand(g:notes_dir)<CR><CR>
+nnoremap ,n :lua require('telescopesetup').search_notes()<CR>
 
 " }}}
 
-" buffer and windows {{{{
+" buffer and windows {{{
 
 set hidden
 set splitright splitbelow
@@ -183,6 +189,11 @@ tnoremap <A-j> <C-\><C-N><C-w>j
 tnoremap <A-k> <C-\><C-N><C-w>k
 tnoremap <A-l> <C-\><C-N><C-w>l
 
+" primary-terminal
+nmap <silent> <leader>t <Plug>(PrimaryTerminalOpen)
+nmap <silent> <leader>r <Plug>(PrimaryTerminalOpenSplit)
+nmap <silent> <leader>y <Plug>(PrimaryTerminalOpenVsplit)
+
 " }}}
 
 " plugin config {{{
@@ -192,31 +203,29 @@ let g:sneak#label = 1
 let g:sneak#s_next = 0
 
 " netrw browser mapping
+let g:loaded_netrwPlugin = 1
 nmap gx <Plug>NetrwBrowseX
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())<CR>
-
-" primary-terminal
-nmap <silent> <leader>t <Plug>(PrimaryTerminalOpen)
-nmap <silent> <leader>r <Plug>(PrimaryTerminalOpenSplit)
-nmap <silent> <leader>y <Plug>(PrimaryTerminalOpenVsplit)
 
 " }}}
 
 " completion {{{
 
 set completeopt=menuone,noinsert,noselect
-let g:mucomplete#enable_auto_at_startup = 1
 
-" omni-completion
-inoremap <silent> ,o <C-x><C-o>
+" nvim-compe
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm({ 'keys': "\<Plug>delimitMateCR", 'mode': '' })
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 " }}}
 
 " colorscheme {{{
-
 set termguicolors
 set background=light
-silent! colorscheme selenized_bw
+colorscheme selenized
 
 augroup Colors
     autocmd!
