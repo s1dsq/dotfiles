@@ -1,0 +1,16 @@
+# Settings
+set main-view = line-number:no \
+    id:yes \
+    date:custom,format="%a %d/%m/%Y %H:%M" \
+    author:full \
+    commit-title:yes,graph,refs,overflow=60
+
+# keymaps
+bind main g move-first-line
+bind main G move-last-line
+
+# Colors
+color author blue default
+color cursor white black
+color date green default
+color title-focus yellow black
