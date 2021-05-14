@@ -37,12 +37,8 @@
     path = ~/.gitconfig_local
 
 [merge]
-    tool = nvimdiff4
+    tool = diffconflicts
     conflictstyle = diff3
-
-[mergetool "nvimdiff4"]
-    cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
-    trustExitCode = true
 
 [diff]
     tool = nvimdiff2
@@ -58,3 +54,10 @@
     lineNumber = true
     fallbackToNoIndex = true
     column = true
+
+[mergetool "diffconflicts"]
+    cmd = nvim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
+    trustExitCode = true
+
+[mergetool]
+    keepBackup = false

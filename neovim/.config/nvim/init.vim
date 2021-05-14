@@ -40,6 +40,7 @@ call minpac#add('justinmk/vim-dirvish')
 call minpac#add('justinmk/vim-sneak')
 call minpac#add('ledger/vim-ledger')
 call minpac#add('neovim/nvim-lspconfig')
+call minpac#add('norcalli/nvim-colorizer.lua')
 call minpac#add('nvim-lua/plenary.nvim')
 call minpac#add('nvim-lua/popup.nvim')
 call minpac#add('nvim-telescope/telescope.nvim')
@@ -51,6 +52,7 @@ call minpac#add('tpope/vim-repeat')
 call minpac#add('tpope/vim-sensible')
 call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-unimpaired')
+call minpac#add('whiteinge/diffconflicts')
 
 command! PackUpdate call minpac#update()
 command! PackClean  call minpac#clean()
@@ -234,6 +236,9 @@ augroup Colors
                 \ | highlight LspDiagnosticsDefaultHint ctermfg=Magenta
                 \ | highlight LspDiagnosticsDefaultWarning ctermfg=DarkMagenta
 augroup END
+
+" termguicolors should be set before this
+lua require'colorizer'.setup()
 
 " }}}
 
