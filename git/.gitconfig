@@ -8,18 +8,11 @@
 [alias]
     l = log --oneline --graph --decorate --pretty=line
     la = l --all
-    ls = l --stat
     st = status -sb
     co = checkout
     ci = commit
     cian = commit --amend --no-edit
-    ff = merge --ff
-    noff = merge --no-ff
-    unstage = reset HEAD --
-    gr = grep -C 1 -I
     root = rev-parse --show-toplevel
-    shs = show --format=fuller --stat
-    showtool = ! "st() { if [ -z $1 ]; then c='HEAD'; else c=$1; fi; git difftool $c~..$c; }; st" # show what has changed in parent/child using git difftool
     news = !git fetch && git log --format=full @..@{u}
     dt = difftool
     plrb = pull --rebase
@@ -33,9 +26,6 @@
 [log]
     date=format:"%a %d/%m/%Y %H:%M"
 
-[include]
-    path = ~/.gitconfig_local
-
 [merge]
     tool = diffconflicts
     conflictstyle = diff3
@@ -46,8 +36,6 @@
 
 [difftool "nvimdiff2"]
     cmd = nvim -d $LOCAL $REMOTE
-
-[difftool]
     trustExitCode = true
 
 [grep]
@@ -58,6 +46,4 @@
 [mergetool "diffconflicts"]
     cmd = nvim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
     trustExitCode = true
-
-[mergetool]
     keepBackup = false
