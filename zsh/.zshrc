@@ -14,9 +14,6 @@ autoload -Uz compinit && compinit -i
 zstyle ':completion:*' menu select=4
 zmodload zsh/complist
 
-# Completion for kitty
-kitty + complete setup zsh | source /dev/stdin
-
 # enable interactive comments
 setopt interactivecomments
 
@@ -52,8 +49,6 @@ bindkey '^[OB'  down-line-or-beginning-search
 source ~/.zsh/functions.zsh
 
 source ~/.zsh/alias.zsh
-
-source ~/.zsh/nnn.zsh
 
 source ~/.zsh/fzf.zsh
 

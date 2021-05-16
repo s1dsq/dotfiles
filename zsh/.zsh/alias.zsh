@@ -1,9 +1,3 @@
-# nnn with helpful options
-alias n3="nnn -edCH"
-
-# nnn in cd after exit mode
-alias nf="n -edCH"
-
 alias e='$EDITOR'
 
 # cd to git root
@@ -22,13 +16,6 @@ alias p='PASSWORD_STORE_ENABLE_EXTENSIONS=true pass'
 alias tis='tig status'
 
 alias hl='hledger'
-
-# taskwarrior and timewarrior
-alias tk='task'
-# https://github.com/kdheepak/taskwarrior-tui
-alias tkt='taskwarrior-tui'
-
-alias tm='timew'
 
 # Commonly used directories
 [[ -d $HOME/.config/nvim ]] && hash -d nvim=$HOME/.config/nvim

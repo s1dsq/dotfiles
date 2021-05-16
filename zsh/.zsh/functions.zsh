@@ -77,7 +77,7 @@ noe() {
 # fuzzy select note to edit in EDITOR
 # using ripgrep
 nof() {
-    rg --files --follow $HOME/Nextcloud/Notes | fzy | xargs $EDITOR
+    rg --files --follow $HOME/Nextcloud/Notes | fzf | xargs $EDITOR
 }
 
 # quickly open nvim with fugitive status
