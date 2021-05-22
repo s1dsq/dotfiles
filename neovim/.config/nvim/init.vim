@@ -86,7 +86,6 @@ set statusline+=\ %m                                                           "
 set statusline+=%r                                                             " readonly flag
 set statusline+=\ %y                                                           " filetype
 set statusline+=%=                                                             " seperator
-set statusline+=\ %{FugitiveStatusline()}                                      " git branch
 set statusline+=\ L:\ \%l\/\%L                                                 " current/total lines
 set statusline+=\ C:\ \%c\                                                     " column number
 " }}}
