@@ -1,13 +1,10 @@
 " custom variables {{{
-
 let $VD=split(&runtimepath, ',')[0]
 let g:mapleader="\<Space>"
 let g:notes_dir="~/Nextcloud/Notes/"
-
 " }}}
 
 " VIMRC {{{
-
 nnoremap <Leader>v :e $MYVIMRC<CR>
 
 augroup VIMRC
@@ -18,11 +15,9 @@ augroup VIMRC
   autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   autocmd WinLeave * setlocal nocursorline
 augroup END
-
 " }}}
 
 " plugins {{{
-
 try
     packadd minpac
 catch
@@ -37,13 +32,11 @@ call minpac#add('justinmk/vim-dirvish')
 call minpac#add('justinmk/vim-sneak')
 call minpac#add('ledger/vim-ledger')
 call minpac#add('neovim/nvim-lspconfig')
-call minpac#add('norcalli/nvim-colorizer.lua')
 call minpac#add('nvim-lua/plenary.nvim')
 call minpac#add('nvim-lua/popup.nvim')
 call minpac#add('nvim-telescope/telescope.nvim')
 call minpac#add('tommcdo/vim-exchange')
 call minpac#add('tpope/vim-commentary')
-call minpac#add('tpope/vim-git')
 call minpac#add('tpope/vim-repeat')
 call minpac#add('tpope/vim-sensible')
 call minpac#add('tpope/vim-surround')
@@ -59,11 +52,9 @@ if has('nvim-0.5')
   lua require('compesetup')
   lua require('telescopesetup')
 endif
-
 " }}}
 
 " settings {{{
-
 set mouse=a
 set expandtab softtabstop=2 shiftwidth=2
 set clipboard^=unnamed,unnamedplus
@@ -86,11 +77,9 @@ if executable('rg')
     set grepprg=rg\ --no-heading\ --vimgrep
     set grepformat=%f:%l:%c:%m
 endif
-
 " }}}
 
 " statusline {{{
-
 set statusline=\ [%n]                                                          " buffer number
 set statusline+=\ %<\ %f                                                       " file name
 set statusline+=\ %m                                                           " modified flag
@@ -100,23 +89,17 @@ set statusline+=%=                                                             "
 set statusline+=\ %{FugitiveStatusline()}                                      " git branch
 set statusline+=\ L:\ \%l\/\%L                                                 " current/total lines
 set statusline+=\ C:\ \%c\                                                     " column number
-
 " }}}
 
 " remaps {{{
-
 nnoremap Y y$
 vnoremap ; :
 vnoremap : ;
 nnoremap ; :
 nnoremap : ;
-map <C-U> <C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
-map <C-D> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
-
 " }}}
 
 " files {{{
-
 nnoremap <BS> :buffer#<CR>
 nnoremap ,m :!mkdir -p %:h<CR>
 nnoremap ,e :edit <C-R>=fnameescape(expand('%:p:h')).'/'<CR>
@@ -134,11 +117,9 @@ nnoremap ,s :lua require('telescopesetup').search_scratch()<CR>
 " notes
 nnoremap <leader>n :edit <C-R>=expand(g:notes_dir)<CR>
 nnoremap ,n :lua require('telescopesetup').search_notes()<CR>
-
 " }}}
 
 " buffer and windows {{{
-
 set hidden
 set splitright splitbelow
 
@@ -151,19 +132,15 @@ nnoremap <A-h> <C-w>h
 nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
-
 " }}}
 
 " misc {{{
-
 " edit filetype settings
 nnoremap <leader>f :e <C-R>='$VD/after/ftplugin/'.&filetype.'.vim'<CR><CR>
 nnoremap <leader>w :call whitespace#StripTrailingWhitespace()<CR>
-
 " }}}
 
 " quickfix/location list {{{
-
 augroup QuickFix
     autocmd!
     autocmd QuickFixCmdPost [^l]* cwindow
@@ -174,11 +151,9 @@ nnoremap <up> :copen<CR>
 nnoremap <down> :cclose<CR>
 nnoremap <left> :lclose<CR>
 nnoremap <right> :lopen<CR>
-
 " }}}
 
 " terminal {{{
-
 tnoremap <C-[> <C-\><C-N>
 autocmd TermOpen * startinsert
 
@@ -186,16 +161,9 @@ tnoremap <A-h> <C-\><C-N><C-w>h
 tnoremap <A-j> <C-\><C-N><C-w>j
 tnoremap <A-k> <C-\><C-N><C-w>k
 tnoremap <A-l> <C-\><C-N><C-w>l
-
-" primary-terminal
-nmap <silent> <leader>t <Plug>(PrimaryTerminalOpen)
-nmap <silent> <leader>r <Plug>(PrimaryTerminalOpenSplit)
-nmap <silent> <leader>y <Plug>(PrimaryTerminalOpenVsplit)
-
 " }}}
 
 " plugin config {{{
-
 " vim-sneak
 let g:sneak#label = 1
 let g:sneak#s_next = 0
@@ -204,11 +172,9 @@ let g:sneak#s_next = 0
 let g:loaded_netrwPlugin = 1
 nmap gx <Plug>NetrwBrowseX
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())<CR>
-
 " }}}
 
 " completion {{{
-
 set completeopt=menuone,noinsert,noselect
 
 " nvim-compe
@@ -217,7 +183,6 @@ inoremap <silent><expr> <CR>      compe#confirm({ 'keys': "\<Plug>delimitMateCR"
 inoremap <silent><expr> <C-e>     compe#close('<C-e>')
 inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
-
 " }}}
 
 " colorscheme {{{
@@ -232,19 +197,13 @@ augroup Colors
                 \ | highlight LspDiagnosticsDefaultHint ctermfg=Magenta
                 \ | highlight LspDiagnosticsDefaultWarning ctermfg=DarkMagenta
 augroup END
-
-" termguicolors should be set before this
-lua require'colorizer'.setup()
-
 " }}}
 
 " Allow local customizations {{{
-
 let $LOCALFILE=expand("~/.init_local.vim")
 if filereadable($LOCALFILE)
     source $LOCALFILE
 endif
-
 " }}}
 
 " vim:fdm=marker ft=vim et sts=2 sw=2
