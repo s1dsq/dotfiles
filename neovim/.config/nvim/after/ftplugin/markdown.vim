@@ -1,4 +1,3 @@
-setlocal spell
 setlocal suffixesadd=.md
 setlocal textwidth=80
 
