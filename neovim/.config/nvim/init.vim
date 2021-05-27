@@ -26,7 +26,6 @@ catch
 endtry
 
 call minpac#init()
-call minpac#add('Raimondi/delimitMate')
 call minpac#add('hrsh7th/nvim-compe')
 call minpac#add('justinmk/vim-dirvish')
 call minpac#add('justinmk/vim-sneak')
@@ -35,6 +34,8 @@ call minpac#add('neovim/nvim-lspconfig')
 call minpac#add('nvim-lua/plenary.nvim')
 call minpac#add('nvim-lua/popup.nvim')
 call minpac#add('nvim-telescope/telescope.nvim')
+call minpac#add('Raimondi/delimitMate')
+call minpac#add('SirVer/ultisnips')
 call minpac#add('tommcdo/vim-exchange')
 call minpac#add('tpope/vim-commentary')
 call minpac#add('tpope/vim-repeat')
@@ -188,14 +189,6 @@ inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 set termguicolors
 set background=light
 colorscheme selenized
-
-augroup Colors
-    autocmd!
-    autocmd ColorScheme * highlight LspDiagnosticsDefaultError ctermfg=DarkRed
-                \ | highlight LspDiagnosticsUnderlineError ctermfg=DarkRed
-                \ | highlight LspDiagnosticsDefaultHint ctermfg=Magenta
-                \ | highlight LspDiagnosticsDefaultWarning ctermfg=DarkMagenta
-augroup END
 " }}}
 
 " Allow local customizations {{{
