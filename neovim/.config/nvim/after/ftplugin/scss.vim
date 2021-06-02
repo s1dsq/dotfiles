@@ -4,9 +4,3 @@ setlocal shiftwidth=2
 :command! -buffer -range=% Prettier let b:winview = winsaveview() |
   \ silent! execute <line1> . "," . <line2> . "!prettier --single-quote --stdin-filepath " . expand('%') | 
   \ call winrestview(b:winview)
-
-" Autocommand for running gofmt and goimport on buffer saves
-augroup Prettify
-  autocmd!
-  autocmd BufWritePre <buffer> Prettier
-augroup END
