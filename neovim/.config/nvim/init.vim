@@ -83,7 +83,7 @@ if executable('rg')
 endif
 " }}}
 
-" statusline {{{
+" statusline & tabline {{{
 set statusline=\ [%n]                                                          " buffer number
 set statusline+=\ %<\ %f                                                       " file name
 set statusline+=\ %m                                                           " modified flag
@@ -92,6 +92,32 @@ set statusline+=\ %y                                                           "
 set statusline+=%=                                                             " seperator
 set statusline+=\ L:\ \%l\/\%L                                                 " current/total lines
 set statusline+=\ C:\ \%c\                                                     " column number
+
+" copied from https://gitlab.com/yorickpeterse/dotfiles/
+function! init#Tabline()
+  let s = ''
+  for i in range(tabpagenr('$'))
+    let tab = i + 1
+    let winnr = tabpagewinnr(tab)
+    let buflist = tabpagebuflist(tab)
+    let bufnr = buflist[winnr - 1]
+    let bufname = bufname(bufnr)
+    let bufmodified = getbufvar(bufnr, "&mod")
+
+    let s .= (tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
+    let s .= ' ' . tab .': '
+    let s .= (bufname != '' ? fnamemodify(bufname, ':t') . ' ' : '[No Name] ')
+
+    if bufmodified
+      let s .= '[+] '
+    endif
+  endfor
+
+  let s .= '%#TabLineFill#'
+  return s
+endfunction
+
+set tabline=%!init#Tabline()
 " }}}
 
 " remaps {{{
