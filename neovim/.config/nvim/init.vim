@@ -34,6 +34,7 @@ call minpac#add('justinmk/vim-dirvish')
 call minpac#add('justinmk/vim-sneak')
 call minpac#add('ledger/vim-ledger')
 call minpac#add('neovim/nvim-lspconfig')
+call minpac#add('numToStr/FTerm.nvim')
 call minpac#add('nvim-lua/plenary.nvim')
 call minpac#add('nvim-lua/popup.nvim')
 call minpac#add('nvim-telescope/telescope.nvim')
@@ -51,10 +52,14 @@ command! PackUpdate call minpac#update()
 command! PackClean  call minpac#clean()
 command! PackStatus call minpac#status()
 
+nnoremap <F1> :call minpac#update()<CR>
+nnoremap <F2> :call minpac#clean()<CR>
+
 if has('nvim-0.5')
   lua require('lspsetup')
   lua require('compesetup')
   lua require('telescopesetup')
+  lua require('ftermsetup')
 endif
 " }}}
 
@@ -135,8 +140,6 @@ nnoremap ,e :edit <C-R>=fnameescape(expand('%:p:h')).'/'<CR>
 
 " dotfiles repo
 nnoremap ,d :lua require('telescopesetup').search_dotfiles()<CR>
-
-" note taking
 
 " scratch notes to jot down stuff
 " abbrev month name-date-year
