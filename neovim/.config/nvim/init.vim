@@ -26,13 +26,11 @@ catch
 endtry
 
 call minpac#init()
-call minpac#add('AndrewRadev/splitjoin.vim')
 call minpac#add('Raimondi/delimitMate')
 call minpac#add('SirVer/ultisnips')
 call minpac#add('hrsh7th/nvim-compe')
 call minpac#add('justinmk/vim-dirvish')
 call minpac#add('justinmk/vim-sneak')
-call minpac#add('ledger/vim-ledger')
 call minpac#add('neovim/nvim-lspconfig')
 call minpac#add('numToStr/FTerm.nvim')
 call minpac#add('nvim-lua/plenary.nvim')
@@ -48,8 +46,6 @@ call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-unimpaired')
 call minpac#add('whiteinge/diffconflicts')
 
-command! PackUpdate call minpac#update()
-command! PackClean  call minpac#clean()
 command! PackStatus call minpac#status()
 
 nnoremap <F1> :call minpac#update()<CR>
