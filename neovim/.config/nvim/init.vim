@@ -76,6 +76,8 @@ set inccommand=nosplit
 set linebreak
 set diffopt+=algorithm:patience
 set lazyredraw
+set pumblend=15
+set pumheight=10
 
 " use rg for improved grepping
 if executable('rg')
@@ -84,16 +86,42 @@ if executable('rg')
 endif
 " }}}
 
-" statusline & tabline {{{
+" statusline {{{
+" copied from https://gitlab.com/yorickpeterse/dotfiles/
+" :help vim.lsp.diagnostic.get_count()
+function! init#LspWarnings() abort
+  let l:warnings = luaeval('vim.lsp.diagnostic.get_count(0, [[Warning]])')
+
+  if l:warnings > 0
+    return printf("\u2002W: %d\u2002", warnings)
+  endif
+
+  return ''
+endfunction
+
+function! init#LspErrors() abort
+  let l:errors = luaeval('vim.lsp.diagnostic.get_count(0, [[Error]])')
+
+  if l:errors > 0
+    return printf("\u2002E: %d\u2002", errors)
+  endif
+
+  return ''
+endfunction
+
 set statusline=\ [%n]                                                          " buffer number
 set statusline+=\ %<\ %f                                                       " file name
 set statusline+=\ %m                                                           " modified flag
 set statusline+=%r                                                             " readonly flag
 set statusline+=\ %y                                                           " filetype
 set statusline+=%=                                                             " seperator
+set statusline+=%#WhiteOnYellow#%{init#LspWarnings()}%*                        " LSP Warning count
+set statusline+=%#WhiteOnRed#%{init#LspErrors()}%*                             " LSP Error count
 set statusline+=\ L:\ \%l\/\%L                                                 " current/total lines
 set statusline+=\ C:\ \%c\                                                     " column number
+" }}}
 
+" tabline {{{
 " copied from https://gitlab.com/yorickpeterse/dotfiles/
 function! init#Tabline()
   let s = ''
@@ -215,8 +243,7 @@ inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 " colorscheme {{{
 set termguicolors
-set background=light
-colorscheme selenized
+colorscheme paper
 " }}}
 
 " Allow local customizations {{{
