@@ -1,4 +1,6 @@
 local nvim_lsp = require('lspconfig')
+
+-- settings {{{1
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -9,11 +11,13 @@ local on_attach = function(client, bufnr)
   local opts = { noremap=true, silent=true }
   buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', '<space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap('n', '<space>q', "<cmd>lua vim.lsp.diagnostic.set_loclist({ severity_limit = 'Warning' })<CR>", opts)
+  buf_set_keymap('n', '<space>d', "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ severity_limit = 'Warning' }, vim.fn.bufnr(''))<CR>", opts)
 
   --Enable (broadcasting) snippet capability for completion
   local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -21,19 +25,11 @@ local on_attach = function(client, bufnr)
 
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-    -- Enable underline, use default values
     underline = {
-      severity_limit = "Warning",
+      severity_limit = 'Warning',
     },
-    -- Enable virtual text, override spacing to 4
-    virtual_text = {
-      spacing = 4,
-      prefix = '~',
-    },
-    signs = {
-      priority = "Warning",
-    },
-    -- Disable a feature
+    virtual_text = false,
+    signs = true,
     update_in_insert = false,
   }
   )
@@ -51,3 +47,41 @@ local snipservers = { "cssls", "html" }
 for _, lsp in ipairs(snipservers) do
   nvim_lsp[lsp].setup { capabilities = capabilities }
 end
+
+-- Completion symbols {{{1
+local lsp_symbols = {
+  Class = '𝗖',
+  Color = '',
+  Constant = '',
+  Constructor = '',
+  Enum = '𝗘',
+  EnumMember = '',
+  File = '',
+  Folder = '',
+  Function = '',
+  Interface = 'ﰮ',
+  Keyword = '',
+  Method = '',
+  Module = '',
+  Property = '',
+  Snippet = '',
+  Struct = '',
+  Text = '',
+  Unit = '',
+  Value = '',
+  Variable = '',
+  Namespace = '',
+  Field = '',
+  Number = '#',
+  TypeParameter = '𝗧'
+}
+
+for kind, symbol in pairs(lsp_symbols) do
+  local kinds = vim.lsp.protocol.CompletionItemKind
+  local index = kinds[kind]
+
+  if index ~= nil then
+    kinds[index] = symbol
+  end
+end
+-- vim: set foldmethod=marker:
