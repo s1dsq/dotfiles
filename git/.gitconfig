@@ -18,7 +18,7 @@
     plrb = pull --rebase
 
 [pretty]
-    line = "%C(auto)%h %<|(60,trunc)%s %C(green)(%cd) %C(blue)<%an>%C(auto)%d"
+    line = "%C(auto)%h %<|(72,trunc)%s %C(green)(%cd) %C(blue)<%an>%C(auto)%d"
 
 [pull] 
     ff = only
