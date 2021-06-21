@@ -5,7 +5,7 @@ require'FTerm'.setup({
         x = 0.5,
         y = 0.5
     },
-    border = 'double'
+    border = 'single'
 })
 
 -- Keybinding
