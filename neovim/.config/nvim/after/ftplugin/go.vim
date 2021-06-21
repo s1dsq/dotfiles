@@ -1,4 +1,4 @@
-set shiftwidth=2 tabstop=2 softtabstop=2 noexpandtab
+setlocal shiftwidth=2 tabstop=2 softtabstop=2 noexpandtab
 
 " User-defined command for running gofmt on select lines (default all)
 :command! -buffer -range=% Gofmt let b:winview = winsaveview() |

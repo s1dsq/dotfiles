@@ -1,4 +1,4 @@
-set foldmethod=syntax
+setlocal foldmethod=syntax
 
 " User-defined command for running prettier on select lines (default all)
 :command! -buffer -range=% Prettier let b:winview = winsaveview() |
